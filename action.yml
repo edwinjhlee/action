@@ -10,6 +10,12 @@ inputs:
   docker_password:
     description: checkout repo name
     required: false
+  entrypoint:
+    description: running bash script
+    require: false
+  shellcode:
+    description: running bash code
+    require: false
 runs:
   using: "composite"
   steps:
@@ -33,4 +39,10 @@ runs:
       env:
         DOCKER_USERNAME: ${{ inputs.docker_username }}
         DOCKER_PASSWORD: ${{ inputs.docker_password }}
+      shell: bash
+    - name: Running Script
+      run: |
+          . $HOME/.x-cmd/.boot/boot || true
+          . "${{ inputs.entrypoint }}"
+      if: ${{ inputs.entrypoint != null }}
       shell: bash
