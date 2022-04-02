@@ -44,7 +44,6 @@ runs:
     - name: Running Script
       run: |
           . $HOME/.x-cmd/.boot/boot || true
-          cat "${{ inputs.entrypoint }}"
           . "${{ inputs.entrypoint }}"
       if: ${{ inputs.entrypoint != null }}
       shell: bash
