@@ -1,19 +1,17 @@
 name: x-cmd ready
 description: Prepare x-cmd
 inputs:
-  checkout:
+  ref:
     description: checkout repo name
-    required: true
-  GITHUB_TOKEN:
-    description: Provide TOKEN or SSH-KEY
-    required: true
-  email:
-    description: 'email'
-    required: true
-
+    required: false
 runs:
   using: "composite"
   steps:
+    - name: git checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ ${{ref}} || github.ref }}
+          fetch-depth: 0
     - name: x-cmd installation
       run: |
         eval "$(curl https://get.x-cmd.com/dev)" || true
