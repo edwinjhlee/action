@@ -1,20 +1,20 @@
-name: x-cmd ready
-description: Prepare x-cmd
+name: X-Action
+description: X-Action
 inputs:
   entrypoint:
-    description: running bash script
+    description: script for execution with bash
     require: false
   shellcode:
-    description: running bash code
+    description: bash code for execution
     require: false
   ref:
     description: checkout ref
     required: false
   docker_username:
-    description: checkout repo name
+    description: Username for Docker login
     required: false
   docker_password:
-    description: checkout repo name
+    description: Password for Docker login
     required: false
   init_buildx:
     description: buildx init
