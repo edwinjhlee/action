@@ -2,11 +2,12 @@
 
 eval "$(curl https://get.x-cmd.com/dev)"
 
-x safe prepare "devteam/"
-
 x git init ssh-key "$(x safe get devteam/ssh-key)"
-x gh token "$(x safe get devteam/github-token)"
 
+[ -z "$GITHUB_TOKEN" ] || GITHUB_TOKEN="$(x safe get devteam/qywx-token)"
+x gh token "$GITHUB_TOKEN"
+
+[ -z "$QYWX_TOKEN" ] || QYWX_TOKEN="$(x safe get devteam/qywx-token)"
 x qywx bot token "$QYWX_TOKEN"
 
 (
@@ -20,9 +21,8 @@ x qywx bot token "$QYWX_TOKEN"
 ) && \
 (
     x ws build || exit 1
-    x gh release create something
+    x gh release create --title something --msg "This is ready"
     x gh release upload xxxx
-    x gh release msg "This is ready"
 ) && {
     x qywx bot msg "Builing success"
 }
