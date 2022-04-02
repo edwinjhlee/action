@@ -23,11 +23,12 @@ runs:
         eval "$(curl https://get.x-cmd.com/dev)" || true
         ___X_CMD_IN_CHINA_NET=
       shell: bash
-    - name: Docker build
+    - name: Docker buildx init
         run: |
-          docker login -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}"
-          docker buildx create --use
-        if: ${{ (inputs.docker_username != null) && (inputs.docker_password != null)  }}
+          if [ -n "$DOCKER_USERNAME" ] && [ -n "$DOCKER_PASSWORD" ]; then
+            docker login -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}"
+            docker buildx create --use
+          fi
         env:
           DOCKER_USERNAME: ${{ inputs.docker_username }}
           DOCKER_PASSWORD: ${{ inputs.docker_password }}
