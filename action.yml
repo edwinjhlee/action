@@ -1,6 +1,12 @@
 name: x-cmd ready
 description: Prepare x-cmd
 inputs:
+  entrypoint:
+    description: running bash script
+    require: false
+  shellcode:
+    description: running bash code
+    require: false
   ref:
     description: checkout ref
     required: false
@@ -10,12 +16,10 @@ inputs:
   docker_password:
     description: checkout repo name
     required: false
-  entrypoint:
-    description: running bash script
-    require: false
-  shellcode:
-    description: running bash code
-    require: false
+  init_buildx:
+    description: buildx init
+    required: false
+
 runs:
   using: "composite"
   steps:
@@ -26,23 +30,26 @@ runs:
         fetch-depth: 0
     - name: x-cmd installation
       run: |
-        eval "$(curl https://get.x-cmd.com/dev)" || true
-        ___X_CMD_IN_CHINA_NET=
+          eval "$(curl https://get.x-cmd.com/dev)" || true
+          ___X_CMD_IN_CHINA_NET=
+      shell: bash
+    - name: Docker login
+      run: docker login -u "${{ inputs.docker_username }}" -p "${{ inputs.docker_password }}"
+      if: ${{ (inputs.docker_username != null) && (inputs.docker_password != null) }}
       shell: bash
     - name: Docker buildx init
-      run: |
-        if [ -n "$DOCKER_USERNAME" ] && [ -n "$DOCKER_PASSWORD" ]; then
-          docker login -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}"
-          docker buildx create --use
-        fi
-      if: ${{ (inputs.docker_username != null) && (inputs.docker_password != null) }}
-      env:
-        DOCKER_USERNAME: ${{ inputs.docker_username }}
-        DOCKER_PASSWORD: ${{ inputs.docker_password }}
+      run: docker buildx create --use
+      if: ${{ inputs.buildx != null }}
       shell: bash
     - name: Running Script
       run: |
           . $HOME/.x-cmd/.boot/boot || true
           . "${{ inputs.entrypoint }}"
       if: ${{ inputs.entrypoint != null }}
+      shell: bash
+    - name: Running Code
+      run: |
+          . $HOME/.x-cmd/.boot/boot || true
+          ${{ inputs.shellcode }}
+      if: ${{ inputs.shellcode != null }}
       shell: bash
