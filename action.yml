@@ -10,7 +10,7 @@ runs:
     - name: git checkout
       uses: actions/checkout@v2
       with:
-        ref: ${{ github.ref_name }}
+        ref: ${{ ref || github.ref_name }}
         fetch-depth: 0
     - name: x-cmd installation
       run: |
