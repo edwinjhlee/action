@@ -1,6 +1,7 @@
 name: Try to do some thing
 on:
-  workflow_dispatch:
+  push:
+  # workflow_dispatch:
 
 jobs:
   bot:
