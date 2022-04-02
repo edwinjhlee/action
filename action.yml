@@ -32,3 +32,4 @@ runs:
       env:
         DOCKER_USERNAME: ${{ inputs.docker_username }}
         DOCKER_PASSWORD: ${{ inputs.docker_password }}
+      shell: bash
