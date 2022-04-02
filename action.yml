@@ -7,11 +7,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: git checkout
-        uses: actions/checkout@v2
-        with:
-          ref: main
-          fetch-depth: 0
     - name: x-cmd installation
       run: |
         eval "$(curl https://get.x-cmd.com/dev)" || true
