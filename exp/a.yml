@@ -7,7 +7,7 @@ jobs:
   bot:
     runs-on: ubuntu-latest
     steps:
-      - name: install x-cmd && setup ssh publish
+      - name: Building
         uses: x-cmd/action@main
         env:
           entrypoint: exp/a.sh
