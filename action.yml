@@ -2,6 +2,12 @@ name: x-cmd ready
 description: Prepare x-cmd
 inputs:
   ref:
+    description: checkout ref
+    required: false
+  docker_username:
+    description: checkout repo name
+    required: false
+  docker_password:
     description: checkout repo name
     required: false
 runs:
@@ -10,10 +16,11 @@ runs:
     - name: git checkout
       uses: actions/checkout@v2
       with:
-        ref: ${{ github.ref_name }}
+        ref: ${{ inputs.ref || github.ref_name }}
         fetch-depth: 0
     - name: x-cmd installation
       run: |
         eval "$(curl https://get.x-cmd.com/dev)" || true
         ___X_CMD_IN_CHINA_NET=
       shell: bash
+
