@@ -1,0 +1,15 @@
+name: Try to do some thing
+on:
+  workflow_dispatch:
+
+jobs:
+  bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: install x-cmd && setup ssh publish
+        uses: x-cmd/action@main
+      - name: install x-cmd && setup ssh publish
+        run:  |
+              echo hi
+              x jo {1:2}
+

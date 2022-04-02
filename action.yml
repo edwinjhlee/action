@@ -1,0 +1,21 @@
+name: x-cmd ready
+description: Prepare x-cmd
+inputs:
+  checkout:
+    description: checkout repo name
+    required: true
+  GITHUB_TOKEN:
+    description: Provide TOKEN or SSH-KEY
+    required: true
+  email:
+    description: 'email'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: x-cmd installation
+      run: |
+        eval "$(curl https://get.x-cmd.com/dev)" || true
+        ___X_CMD_IN_CHINA_NET=
+      shell: bash
