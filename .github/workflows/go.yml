@@ -8,7 +8,9 @@ jobs:
     steps:
       - name: install x-cmd && setup ssh publish
         uses: x-cmd/action@main
-      - name: install x-cmd && setup ssh publish
+        run: |
+              echo hi
+      - name: echo
         run:  |
               echo hi
               x jo {1:2}
