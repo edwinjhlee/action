@@ -2,10 +2,10 @@
 
 eval "$(curl https://get.x-cmd.com/dev)"
 
-x vault prepare "devteam/*"
+x safe prepare "devteam/"
 
-x git init ssh-key "$(x vault get devteam/ssh-key)"
-x gh token "$(x vault get devteam/github-token)"
+x git init ssh-key "$(x safe get devteam/ssh-key)"
+x gh token "$(x safe get devteam/github-token)"
 
 x qywx bot token "$QYWX_TOKEN"
 
