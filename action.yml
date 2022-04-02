@@ -29,7 +29,7 @@ runs:
           docker login -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}"
           docker buildx create --use
         fi
-      if: ${{ inputs.docker_username != null }}
+      if: ${{ (inputs.docker_username != null) && (inputs.docker_password != null) }}
       env:
         DOCKER_USERNAME: ${{ inputs.docker_username }}
         DOCKER_PASSWORD: ${{ inputs.docker_password }}
