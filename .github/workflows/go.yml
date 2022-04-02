@@ -11,8 +11,10 @@ jobs:
         uses: x-cmd/action@main
       - name: echo
         run:  |
-              . ~/.x-cmd/.boot/boot
-              echo hi
-              x jo {1:2}
+              ls $HOME || true
+              ls $HOME/.x-cmd || true
+              . $HOME/.x-cmd/.boot/boot || true
+              echo hi || true
+              x jo {1:2} || true
         shell: bash
 
