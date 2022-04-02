@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: install x-cmd && setup ssh publish
         uses: x-cmd/action@main
+        with:
+          shellcode: x jo {1:2} || true
       - name: echo
         run:  |
               . $HOME/.x-cmd/.boot/boot || true
