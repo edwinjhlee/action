@@ -14,4 +14,5 @@ jobs:
               . ~/.x-cmd/.boot/boot
               echo hi
               x jo {1:2}
+        shell: bash
 
