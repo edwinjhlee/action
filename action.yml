@@ -44,12 +44,14 @@ runs:
     - name: Running Script
       run: |
           . $HOME/.x-cmd/.boot/boot || true
+          set +o errexit
           . "${{ inputs.entrypoint }}"
       if: ${{ inputs.entrypoint != null }}
       shell: bash
     - name: Running Code
       run: |
           . $HOME/.x-cmd/.boot/boot || true
+          set +o errexit
           ${{ inputs.shellcode }}
       if: ${{ inputs.shellcode != null }}
       shell: bash
