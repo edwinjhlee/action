@@ -12,4 +12,4 @@ jobs:
         with:
           # shellcode: x jo {1:2} || true
           # entrypoint: lib/a.sh
-          entrypoint: lib/action.sh
+          entrypoint: lib/action.yml

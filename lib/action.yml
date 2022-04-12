@@ -1,0 +1,87 @@
+name: X-Action
+description: X-Action
+inputs:
+  entrypoint:
+    description: script for execution with bash
+    required: false
+  shellcode:
+    description: bash code for execution
+    required: false
+  ref:
+    description: checkout ref
+    required: false
+  docker_username:
+    description: Username for Docker login
+    required: false
+  docker_password:
+    description: Password for Docker login
+    required: false
+  buildx_init:
+    description: buildx init
+    required: false
+  ssh_key:
+    description: ssh key
+    required: false
+  git_user:
+    description: Git Commit Username
+    required: false
+  git_email:
+    description: Git Commit Email
+    required: false
+runs:
+  using: "composite"
+  steps:
+    - name: Git checkout
+      uses: actions/checkout@v2
+      with:
+        ref: ${{ inputs.ref || github.ref_name }}
+        fetch-depth: 0
+    - name: Init ssh agent
+      uses: webfactory/ssh-agent@v0.5.4
+      if: ${{ inputs.ssh_key != null }}
+      with:
+        ssh-private-key: ${{ inputs.ssh_key }}
+    - name: Add ssh key
+      run: |
+        echo "github.com,52.74.223.119 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==" >> ~/.ssh/known_hosts
+        echo "gitee.com,180.97.125.228 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBMuEoYdx6to5oxR60IWj8uoe1aI0X1fKOHWOtLqTg1tsLT1iFwXV5JmFjU46EzeMBV/6EmI1uaRI6HiEPtPtJHE=" >> ~/.ssh/known_hosts
+        echo "${{ inputs.ssh_key }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/known_hosts
+        chmod 600 ~/.ssh/id_rsa
+        ssh-add ~/.ssh/id_rsa
+      if: ${{ inputs.ssh_key != null }}
+      shell: bash
+    - name: Git config user and email
+      run: |
+        [ -n "${{ inputs.git_user }}" ] && git config --global user.name '${{ inputs.git_user }}'
+        [ -n "${{ inputs.git_email }}" ] && git config --global user.email '${{ inputs.git_email }}'
+        git remote -v
+      shell: bash
+      if: ${{ (inputs.git_user != null) || (inputs.git_email != null) }}
+    - name: x-cmd installation
+      run: |
+          eval "$(curl https://get.x-cmd.com/dev)" || true
+          ___X_CMD_IN_CHINA_NET=
+      shell: bash
+    - name: Docker login
+      run: docker login -u "${{ inputs.docker_username }}" -p "${{ inputs.docker_password }}"
+      if: ${{ (inputs.docker_username != null) && (inputs.docker_password != null) }}
+      shell: bash
+    - name: Docker buildx init
+      run: docker buildx create --use
+      if: ${{ inputs.buildx_init != null }}
+      shell: bash
+    - name: Running Script
+      run: |
+          . $HOME/.x-cmd/.boot/boot || true
+          set +o errexit
+          . "${{ inputs.entrypoint }}"
+      if: ${{ inputs.entrypoint != null }}
+      shell: bash
+    - name: Running Code
+      run: |
+          . $HOME/.x-cmd/.boot/boot || true
+          set +o errexit
+          ${{ inputs.shellcode }}
+      if: ${{ inputs.shellcode != null }}
+      shell: bash
