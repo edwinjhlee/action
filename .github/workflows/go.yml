@@ -9,7 +9,9 @@ jobs:
     steps:
       - name: install x-cmd && setup ssh publish
         uses: x-cmd/action@main
+        
         with:
+         run: bash ./action.yml
           # shellcode: x jo {1:2} || true
           # entrypoint: lib/a.sh
-          entrypoint: lib/action.yml
+          #entrypoint: lib/action.yml
