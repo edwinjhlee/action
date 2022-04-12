@@ -11,7 +11,7 @@ jobs:
         uses: x-cmd/action@main
         
         with:
-         run: bash ./action.yml
+         #run: bash ./action.yml
           # shellcode: x jo {1:2} || true
-          # entrypoint: lib/a.sh
+          entrypoint: bash ./action.yml
           #entrypoint: lib/action.yml
