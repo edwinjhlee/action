@@ -11,4 +11,5 @@ jobs:
         uses: x-cmd/action@main
         with:
           # shellcode: x jo {1:2} || true
-          entrypoint: lib/a.sh
+          # entrypoint: lib/a.sh
+          entrypoint: ./action.yml
