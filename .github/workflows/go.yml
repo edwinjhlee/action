@@ -11,6 +11,6 @@ jobs:
         uses: x-cmd/action@main
         
         with:
-          shellcode: x jo {1:2} || true
+          shellcode: x install ls
           entrypoint: lib/a.sh
           
