@@ -28,6 +28,7 @@ inputs:
   git_email:
     description: Git Commit Email
     required: false
+    
 runs:
   using: "composite"
   steps:
