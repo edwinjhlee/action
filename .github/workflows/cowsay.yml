@@ -1,7 +1,7 @@
 name: Try to do some thing
 on:
   push:
-  # workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
   cowsay:
