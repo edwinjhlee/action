@@ -1,0 +1,17 @@
+name: Try to do some thing
+on:
+  # push:
+  workflow_dispatch:
+
+jobs:
+  cowsay:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, macos-11 ]
+        node: [10, 12, 14]
+    steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+      - uses: x-cmd/action@main

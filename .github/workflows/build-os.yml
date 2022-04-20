@@ -8,12 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: x-cmd/action@main
-      - with:
+        with:
           shellcode: xws build linux
     
   macos:
     runs-on: macos-11
     steps:
       - uses: x-cmd/action@main
-      - with:
+        with:
           shellcode: xws build macos
