@@ -62,7 +62,6 @@ runs:
       run: |
         [ -n "${{ inputs.git_user }}" ] && git config --global user.name '${{ inputs.git_user }}'
         [ -n "${{ inputs.git_email }}" ] && git config --global user.email '${{ inputs.git_email }}'
-        git remote -v >/dev/null
       shell: bash
       if: ${{ (inputs.git_user != null) || (inputs.git_email != null) }}
     - name: x-cmd installation
