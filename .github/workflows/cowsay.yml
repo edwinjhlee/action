@@ -10,7 +10,7 @@ jobs:
       - uses: x-cmd/action@main
         with:
           shellcode: git clone git@github.com:x-cmd/theme.git
-          ssh_key: secrets.ssh_key
+          ssh_key: ${{ secrets.ssh_key }}
     
   # build:
   #   runs-on: ubuntu-latest
