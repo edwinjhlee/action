@@ -1,4 +1,4 @@
-name: Try to do some thing
+name: Cowsay
 on:
   # push:
   workflow_dispatch:
