@@ -5,10 +5,10 @@ inputs:
     description: script for execution with bash
     required: false
   before:
-    description: script for execution with bash
+    description: shellcode before execution of entrypoint
     required: false
   after:
-    description: script for execution with bash
+    description: shellcode after execution of entrypoint
     required: false
 
   shellcode:
