@@ -12,4 +12,4 @@ jobs:
         
         with:
           shellcode: x install ls
-          entrypoint: lib/a.sh
+          entrypoint: .x-cmd/cowsay
