@@ -57,7 +57,7 @@ runs:
       run: |
         [ -n "${{ inputs.git_user }}" ] && git config --global user.name '${{ inputs.git_user }}'
         [ -n "${{ inputs.git_email }}" ] && git config --global user.email '${{ inputs.git_email }}'
-        git clone --branch ${{ inputs.ref || github.ref_name }} ${{ github.ssh_url }}
+        git clone --branch ${{ inputs.ref || github.ref_name }} ${{ github.repository.ssh_url }}
       shell: bash
     - name: x-cmd installation
       run: |
