@@ -38,10 +38,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - uses: actions/checkout@v2
-      with:
-        ref: ${{ inputs.ref || github.ref_name }}
-        fetch-depth: 0
     - name: Init ssh agent
       uses: webfactory/ssh-agent@v0.5.4
       if: ${{ inputs.ssh_key != null }}
