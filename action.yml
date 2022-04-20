@@ -57,12 +57,12 @@ runs:
         ssh-add ~/.ssh/id_rsa
       if: ${{ inputs.ssh_key != null }}
       shell: bash
-    - name: Git config user and email
+    - name: Git Init And Config user and email
       run: |
         [ -n "${{ inputs.git_user }}" ] && git config --global user.name '${{ inputs.git_user }}'
         [ -n "${{ inputs.git_email }}" ] && git config --global user.email '${{ inputs.git_email }}'
+        git clone --branch ${{ inputs.ref || github.ref_name }} ${{ github.action_repository }}
       shell: bash
-      if: ${{ (inputs.git_user != null) || (inputs.git_email != null) }}
     - name: x-cmd installation
       run: |
           eval "$(curl https://get.x-cmd.com/dev)" || true
