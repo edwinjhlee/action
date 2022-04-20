@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: x-cmd/action@main
         with:
-          shellcode: git clone git@github.com:x-cmd/theme.git
+          shellcode: git clone git@github.com:x-cmd/theme.git; ls theme
           ssh_key: ${{ secrets.ssh_key }}
     
   # build:
