@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: x-cmd/action@main
     
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: x-cmd/action@main
+  # build:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: x-cmd/action@main
