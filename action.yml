@@ -78,6 +78,9 @@ runs:
       run: docker buildx create --use
       if: ${{ inputs.buildx_init != null }}
       shell: bash
+    - name: test
+      run: echo ${{ hashFiles( format( '{0} {1}', '.x-cmd', github.job ) }}
+      shell: bash
     - name: Running Script
       run: |
           ${{ inputs.before }}
