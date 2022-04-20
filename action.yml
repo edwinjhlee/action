@@ -38,6 +38,11 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: x-cmd installation
+      run: eval "$(curl https://get.x-cmd.com/dev)" 2>/dev/null || true; ___X_CMD_IN_CHINA_NET=; echo "$input"
+      shell: bash
+      env:
+        input: ${{ toJSON( input ) }}
     - name: Init ssh agent
       uses: webfactory/ssh-agent@v0.5.4
       if: ${{ inputs.ssh_key != null }}
@@ -59,9 +64,6 @@ runs:
         [ -n "${{ inputs.git_user }}" ] && git config --global user.name '${{ inputs.git_user }}'
         [ -n "${{ inputs.git_email }}" ] && git config --global user.email '${{ inputs.git_email }}'
         git clone --branch ${{ inputs.ref || github.ref_name }} ${{ github.event.repository.ssh_url }}
-      shell: bash
-    - name: x-cmd installation
-      run: eval "$(curl https://get.x-cmd.com/dev)" 2>/dev/null || true; ___X_CMD_IN_CHINA_NET=; 
       shell: bash
     - name: Docker login
       run: docker login -u "${{ inputs.docker_username }}" -p "${{ inputs.docker_password }}"
