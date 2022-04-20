@@ -81,7 +81,7 @@ runs:
       run: |
           echo hi
           echo "$___X_CMD_INSIDE_GITHUB_ACTION"
-      # if: ${{ (inputs.entrypoint != null) || (hashFiles( format( '.x-cmd/{0}', github.job ) != '') ) }}
+      if: ${{ (inputs.entrypoint != null) || (hashFiles( format( '.x-cmd/{0}', github.job ) != '') ) }}
       env: 
           ___X_CMD_INSIDE_GITHUB_ACTION: ${{ inputs.entrypoint || format( '.x-cmd/{0}', github.job ) }}
       shell: bash
