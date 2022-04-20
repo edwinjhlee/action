@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: x-cmd/action@main
+        with:
+          shellcode: git@github.com:x-cmd/theme.git
     
   # build:
   #   runs-on: ubuntu-latest
