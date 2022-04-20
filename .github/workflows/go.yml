@@ -7,5 +7,9 @@ jobs:
   cowsay:
     runs-on: ubuntu-latest
     steps:
-      - name: main
+      - name: install x-cmd && setup ssh publish
         uses: x-cmd/action@main
+        
+        with:
+          shellcode: x install ls
+          entrypoint: .x-cmd/cowsay
