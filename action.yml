@@ -82,11 +82,12 @@ runs:
           ${{ inputs.before }}
           . $HOME/.x-cmd/.boot/boot || true
           set +o errexit
-          ___X_CMD_INSIDE_GITHUB_ACTION=${{inputs.entrypoint}}
-          ___X_CMD_INSIDE_GITHUB_ACTION="${___X_CMD_INSIDE_GITHUB_ACTION:-.x-cmd/${{github.job}}}"
+          echo "here: $___X_CMD_INSIDE_GITHUB_ACTION"
           . "$___X_CMD_INSIDE_GITHUB_ACTION"
           ${{ inputs.after }}
       if: ${{ (inputs.entrypoint != null) || (hashFiles( format( '.x-cmd/{0}', github.job ) != '') ) }}
+      env: 
+          ___X_CMD_INSIDE_GITHUB_ACTION: ${{ inputs.entrypoint || format( '.x-cmd/{0}', github.job ) }}
       shell: bash
     - name: Running Code
       run: |
