@@ -87,7 +87,7 @@ runs:
           ___X_CMD_INSIDE_GITHUB_ACTION="${___X_CMD_INSIDE_GITHUB_ACTION:-.x-cmd/${{github.job}}}"
           . "$___X_CMD_INSIDE_GITHUB_ACTION"
           ${{ inputs.after }}
-      if: ${{ (inputs.entrypoint != null) || hashFiles( format( '{0} {1}', '.x-cmd', github.job ) != '' }}
+      if: ${{ (inputs.entrypoint != null) || (hashFiles( format( '{0} {1}', '.x-cmd', github.job ) != '') }}
       shell: bash
     - name: Running Code
       run: |
