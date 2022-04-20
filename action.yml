@@ -61,9 +61,7 @@ runs:
         git clone --branch ${{ inputs.ref || github.ref_name }} ${{ github.event.repository.ssh_url }}
       shell: bash
     - name: x-cmd installation
-      run: |
-          eval "$(curl https://get.x-cmd.com/dev 2>/dev/null)" || true
-          ___X_CMD_IN_CHINA_NET=
+      run: eval "$(curl https://get.x-cmd.com/dev)" 2>/dev/null || true; ___X_CMD_IN_CHINA_NET=; 
       shell: bash
     - name: Docker login
       run: docker login -u "${{ inputs.docker_username }}" -p "${{ inputs.docker_password }}"
