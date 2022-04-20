@@ -84,6 +84,7 @@ runs:
           ${{ inputs.before }}
           . $HOME/.x-cmd/.boot/boot || true
           set +o errexit
+          ___X_CMD_INSIDE_GITHUB_ACTION=1
           . ${{ inputs.entrypoint }}
           ${{ inputs.after }}
       if: ${{ inputs.entrypoint != null }}
@@ -92,6 +93,7 @@ runs:
       run: |
           . $HOME/.x-cmd/.boot/boot || true
           set +o errexit
+          ___X_CMD_INSIDE_GITHUB_ACTION=1
           ${{ inputs.shellcode }}
       if: ${{ inputs.shellcode != null }}
       shell: bash
