@@ -1,6 +1,6 @@
 name: Try to do some thing
 on:
-  push:
+  # push:
   workflow_dispatch:
 
 jobs:
