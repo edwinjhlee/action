@@ -7,5 +7,4 @@ jobs:
   cowsay:
     runs-on: ubuntu-latest
     steps:
-      - name: xws cowsay
-        uses: x-cmd/action@main
+      - uses: x-cmd/action@main
