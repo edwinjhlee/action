@@ -77,6 +77,14 @@ runs:
       run: docker buildx create --use
       if: ${{ inputs.buildx_init != null }}
       shell: bash
+    - name: Hello Script
+      run: |
+          echo hi
+          echo "$___X_CMD_INSIDE_GITHUB_ACTION"
+      # if: ${{ (inputs.entrypoint != null) || (hashFiles( format( '.x-cmd/{0}', github.job ) != '') ) }}
+      env: 
+          ___X_CMD_INSIDE_GITHUB_ACTION: ${{ inputs.entrypoint || format( '.x-cmd/{0}', github.job ) }}
+      shell: bash
     - name: Running Script
       run: |
           ${{ inputs.before }}
