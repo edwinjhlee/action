@@ -4,6 +4,13 @@ inputs:
   entrypoint:
     description: script for execution with bash
     required: false
+  before:
+    description: script for execution with bash
+    required: false
+  after:
+    description: script for execution with bash
+    required: false
+
   shellcode:
     description: bash code for execution
     required: false
@@ -74,9 +81,11 @@ runs:
       shell: bash
     - name: Running Script
       run: |
+          ${{ inputs.before }}
           . $HOME/.x-cmd/.boot/boot || true
           set +o errexit
           . ${{ inputs.entrypoint }}
+          ${{ inputs.after }}
       if: ${{ inputs.entrypoint != null }}
       shell: bash
     - name: Running Code
