@@ -39,7 +39,7 @@ runs:
   using: "composite"
   steps:
     - name: x-cmd installation
-      run: eval "$(curl https://get.x-cmd.com/dev)" 2>/dev/null || true; ___X_CMD_IN_CHINA_NET=; echo -e "\033[31m$input"
+      run: eval "$(curl https://get.x-cmd.com/dev)" 2>/dev/null || true; ___X_CMD_IN_CHINA_NET=;
       shell: bash
       env:
         input: ${{ toJSON( inputs ) }}
