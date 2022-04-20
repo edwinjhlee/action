@@ -79,9 +79,9 @@ runs:
       shell: bash
     - name: Running Script
       run: |
-          ${{ inputs.before }}
+          set +o errexit; . $HOME/.x-cmd/.boot/boot
           . $HOME/.x-cmd/.boot/boot || true
-          set +o errexit
+          ${{ inputs.before }}
           . "$___X_CMD_INSIDE_GITHUB_ACTION"
           ${{ inputs.after }}
       if: ${{ (inputs.entrypoint != null) || (hashFiles( format( '.x-cmd/{0}', github.job ) ) != '' ) }}
@@ -90,8 +90,7 @@ runs:
       shell: bash
     - name: Running Code
       run: |
-          . $HOME/.x-cmd/.boot/boot || true
-          set +o errexit; ___X_CMD_INSIDE_GITHUB_ACTION=___shellcode___
+          set +o errexit; . $HOME/.x-cmd/.boot/boot; ___X_CMD_INSIDE_GITHUB_ACTION=___shellcode___
           ${{ inputs.shellcode }}
       if: ${{ inputs.shellcode != null }}
       shell: bash
