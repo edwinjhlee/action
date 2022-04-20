@@ -1,2 +1,0 @@
-type x
-x cowsay
