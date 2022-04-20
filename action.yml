@@ -76,7 +76,7 @@ runs:
       run: |
           . $HOME/.x-cmd/.boot/boot || true
           set +o errexit
-          . lib/a.sh
+          . ${{ inputs.entrypoint }}
       if: ${{ inputs.entrypoint != null }}
       shell: bash
     - name: Running Code
