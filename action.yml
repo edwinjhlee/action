@@ -10,7 +10,6 @@ inputs:
   after:
     description: shellcode after execution of entrypoint
     required: false
-
   shellcode:
     description: bash code for execution
     required: false
