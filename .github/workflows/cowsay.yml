@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: x-cmd/action@main
         with:
-          shellcode: git@github.com:x-cmd/theme.git
+          shellcode: git clone git@github.com:x-cmd/theme.git
     
   # build:
   #   runs-on: ubuntu-latest
