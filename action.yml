@@ -80,7 +80,6 @@ runs:
     - name: Running Script
       run: |
           set +o errexit; . $HOME/.x-cmd/.boot/boot
-          . $HOME/.x-cmd/.boot/boot || true
           ${{ inputs.before }}
           . "$___X_CMD_INSIDE_GITHUB_ACTION"
           ${{ inputs.after }}
