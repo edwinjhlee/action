@@ -3,7 +3,6 @@ set +o errexit
 
 init_x_cmd(){
     eval "$(curl https://get.x-cmd.com/dev 2>/dev/null)" 2>/dev/null || true
-    init_main
 }
 
 init_ssh_key(){
