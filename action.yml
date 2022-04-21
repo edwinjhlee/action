@@ -44,7 +44,6 @@ runs:
   using: "composite"
   steps:
     - name: init x-cmd, git, docker, ssh
-      run: eval "$(curl -s https://raw.githubusercontent.com/x-cmd/action/main/lib/index.sh | tee ~/.init)"; init_main
       shell: bash
       env:
         ssh_key: ${{ inputs.ssh_key || env.ssh_key }}
@@ -54,21 +53,22 @@ runs:
         docker_username: ${{ inputs.docker_username || env.docker_username }}
         docker_password: ${{ inputs.docker_password || env.docker_password }}
         docker_buildx_init: ${{ inputs.docker_buildx_init || env.docker_buildx_init }}
+      run: eval "$(curl -s https://raw.githubusercontent.com/x-cmd/action/main/lib/index.sh | tee ~/.init)"; init_main
         
     - name: Running Script
+      shell: bash
+      env:
+        ___X_CMD_INSIDE_GITHUB_ACTION: ${{ inputs.entrypoint || env.entrypoint || format( '.x-cmd/{0}', github.job ) }}
+      if: ${{ hashFiles( env.___X_CMD_INSIDE_GITHUB_ACTION ) != '' }}
       run: |
           . ~/.init run_script_before
           ${{ env.before }}
           . "$___X_CMD_INSIDE_GITHUB_ACTION"
           ${{ env.after }}
-      env:
-        ___X_CMD_INSIDE_GITHUB_ACTION: ${{ inputs.entrypoint || env.entrypoint || format( '.x-cmd/{0}', github.job ) }}
-      if: ${{ hashFiles( env.___X_CMD_INSIDE_GITHUB_ACTION ) != '' }}
-      shell: bash
 
     - name: Running Code
+      shell: bash
+      if: ${{ env.shellcode != null }}
       run: |
           . ~/.init run_shellcode_before
           ${{ env.shellcode }}
-      if: ${{ env.shellcode != null }}
-      shell: bash
