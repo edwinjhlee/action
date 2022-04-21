@@ -9,7 +9,11 @@ init_x_cmd(){
 init_git(){
     [ -n "$git_user" ] && git config --global user.name "$git_user"
     [ -n "$git_email" ] && git config --global user.email "$git_email"
-    [ -n "$git_ssh_url" ] && [ -n "$git_ref" ] && git clone --branch "$git_ref" "$git_ssh_url"
+    if [ -n "$git_ssh_url" ] && [ -n "$git_ref" ]; then
+        git clone --branch "$git_ref" "$git_ssh_url"
+        git_ssh_url="${git_ssh_url##*/}"
+        cd "${git_ssh_url%.git}"
+    fi
     true
 }
 
