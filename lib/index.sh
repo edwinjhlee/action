@@ -66,18 +66,7 @@ ___x_cmd_ghaction_init()(
 
 ___x_cmd_ghaction_run(){
     set +o errexit; . $HOME/.x-cmd/.boot/boot
-
-            echo "-------------"
-        pwd
-        echo "-------------"
-        ls .x-cmd
-         echo "-------------"
-        ls .
-
-    cd ~/workspace
-            echo "-------------"
-        pwd
-        echo "-------------"
+    cd workspace
     if [ -n "$___X_CMD_GHACTION_PREHOOK" ]; then
         x log :X "Running PREHOOK."
         eval "$___X_CMD_GHACTION_PREHOOK"
