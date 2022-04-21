@@ -10,18 +10,11 @@ ___x_cmd_ghaction_init_x_cmd(){
 ___x_cmd_ghaction_init_git(){
     [ -n "$git_user" ] && git config --global user.name "$git_user"
     [ -n "$git_email" ] && git config --global user.email "$git_email"
-    echo "$git_url" "$git_ref"
     if [ -n "$git_url" ] && [ -n "$git_ref" ]; then
         git clone --branch "$git_ref" "$git_url"
         git_url="${git_url##*/}"
-        echo "$git_url"
-        echo "${git_url%.git}"
-        echo "-------------"
-        pwd
-        echo "-------------"
         ln -s "$(pwd)/${git_url%.git}" "$(pwd)/workspace"
         cd "${git_url%.git}"
-        ls "${git_url%.git}"
     fi
     true
 }
@@ -50,7 +43,7 @@ github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXY
 gitee.com,180.97.125.228 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBMuEoYdx6to5oxR60IWj8uoe1aI0X1fKOHWOtLqTg1tsLT1iFwXV5JmFjU46EzeMBV/6EmI1uaRI6HiEPtPtJHE=
 " >> ~/.ssh/known_hosts
 
-    echo "$ssh_key" >> ~/.ssh/id_rsa
+    printf "%s\n" "$ssh_key" >> ~/.ssh/id_rsa
     chmod 600 ~/.ssh/known_hosts ~/.ssh/id_rsa
     ssh-add ~/.ssh/id_rsa
 } 2>/dev/null 1>&2
@@ -72,10 +65,6 @@ ___x_cmd_ghaction_run(){
         x log :X "Running PREHOOK."
         eval "$___X_CMD_GHACTION_PREHOOK"
     fi
-
-    ls .x-cmd
-    pwd
-    ls .
 
     if [ -f "$___X_CMD_GHACTION_SCRIPT" ]; then
         x log :X "Running file: $___X_CMD_GHACTION_SCRIPT"
