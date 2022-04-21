@@ -7,4 +7,18 @@ init_ssh_key(){
     ssh-add ~/.ssh/id_rsa
 }
 
+init_git(){
+    [ -n "$git_user" ] && git config --global user.name "$git_user"
+    [ -n "$git_email" ] && git config --global user.email "$git_email"
+    [ -n "$git_ssh_url" ] && [ -n "$git_ref" ] && git clone --branch "$git_ref" $git_ssh_url
+}
 
+init_docker(){
+    if [ -n "$docker_username" ] && [ -n "$docker_password" ]; then
+        docker login -u "$docker_username" -p "$docker_password"
+    fi
+
+    if [ -n "$docker_buildx" ]; then
+        docker buildx create --use
+    fi
+}
