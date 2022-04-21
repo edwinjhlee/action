@@ -93,5 +93,6 @@ if [ "$#" -gt 0 ]; then
         run)        shift; ___x_cmd_ghaction_run "$@" ;;
         init)       shift; ___x_cmd_ghaction_init "$@" ;;
     esac
+    true
 fi
 
