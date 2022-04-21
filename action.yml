@@ -62,5 +62,5 @@ runs:
         ___X_CMD_GHACTION_PREHOOK: ${{ inputs.prehook || env.prehook  }}
         ___X_CMD_GHACTION_SCRIPT: ${{ inputs.script || env.script || format( '.x-cmd/{0}', github.job ) }}
         ___X_CMD_GHACTION_CODE: '${{ inputs.code }}'
-        ___X_CMD_GHACTION_POSTHOOK: ${{ inputs.post || env.posthook }}
+        ___X_CMD_GHACTION_POSTHOOK: ${{ inputs.posthook || env.posthook }}
       run: bash ~/xghaction run
