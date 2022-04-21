@@ -63,7 +63,7 @@ runs:
       run: |
         [ -n "${{ inputs.git_user }}" ] && git config --global user.name '${{ inputs.git_user }}'
         [ -n "${{ inputs.git_email }}" ] && git config --global user.email '${{ inputs.git_email }}'
-        git clone --branch ${{ inputs.ref || github.ref_name }} ${{ github.event.repository.ssh_url }}
+        [ -n '${{ github.event.repository.ssh_url }}' ] && [ -n '${{ inputs.ref || github.ref_name }}' ] && git clone --branch ${{ inputs.ref || github.ref_name }} ${{ github.event.repository.ssh_url }}
       shell: bash
     - name: Docker login
       run: docker login -u "${{ inputs.docker_username }}" -p "${{ inputs.docker_password }}"
