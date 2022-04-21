@@ -71,6 +71,8 @@ ___x_cmd_ghaction_run(){
         pwd
         echo "-------------"
         ls .x-cmd
+         echo "-------------"
+        ls .
 
     cd ~/workspace
             echo "-------------"
