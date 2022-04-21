@@ -16,6 +16,9 @@ ___x_cmd_ghaction_init_git(){
         git_url="${git_url##*/}"
         echo "$git_url"
         echo "${git_url%.git}"
+        echo "-------------"
+        pwd
+        echo "-------------"
         ln -s "$(pwd)/${git_url%.git}" "$(pwd)/workspace"
         cd "${git_url%.git}"
     fi
@@ -64,6 +67,9 @@ ___x_cmd_ghaction_init()(
 ___x_cmd_ghaction_run(){
     set +o errexit; . $HOME/.x-cmd/.boot/boot
 
+            echo "-------------"
+        pwd
+        echo "-------------"
     cd ~/workspace
 
     if [ -n "$___X_CMD_GHACTION_PREHOOK" ]; then
