@@ -16,6 +16,7 @@ ___x_cmd_ghaction_init_git(){
         git_url="${git_url##*/}"
         echo "$git_url"
         echo "${git_url%.git}"
+        ln -s workspace "${git_url%.git}"
         cd "${git_url%.git}"
     fi
     true
@@ -62,6 +63,8 @@ ___x_cmd_ghaction_init()(
 
 ___x_cmd_ghaction_run(){
     set +o errexit; . $HOME/.x-cmd/.boot/boot
+
+    cd ~/workspace
 
     if [ -n "$___X_CMD_GHACTION_PREHOOK" ]; then
         x log :X "Running PREHOOK."
