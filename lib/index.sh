@@ -29,6 +29,7 @@ init_docker(){
     if [ -n "$docker_buildx" ]; then
         docker buildx create --use
     fi
+    true
 }
 
 init_main(){
@@ -37,6 +38,7 @@ init_main(){
     init_ssh_key
     init_git
     init_docker
+    true
 }
 
 run_script_before(){
