@@ -10,10 +10,11 @@ ___x_cmd_ghaction_init_x_cmd(){
 ___x_cmd_ghaction_init_git(){
     [ -n "$git_user" ] && git config --global user.name "$git_user"
     [ -n "$git_email" ] && git config --global user.email "$git_email"
-    if [ -n "$git_ssh_url" ] && [ -n "$git_ref" ]; then
-        git clone --branch "$git_ref" "$git_ssh_url"
-        git_ssh_url="${git_ssh_url##*/}"
-        cd "${git_ssh_url%.git}"
+    echo "$git_url" "$git_ref"
+    if [ -n "$git_url" ] && [ -n "$git_ref" ]; then
+        git clone --branch "$git_ref" "$git_url"
+        git_url="${git_url##*/}"
+        cd "${git_url%.git}"
     fi
     true
 }
