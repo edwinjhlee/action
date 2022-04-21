@@ -41,8 +41,6 @@ runs:
     - name: x-cmd installation
       run: eval "$(curl https://get.x-cmd.com/dev)" 2>/dev/null || true; ___X_CMD_IN_CHINA_NET=;
       shell: bash
-      env:
-        input: ${{ toJSON( inputs ) }}
     - name: Init ssh agent
       uses: webfactory/ssh-agent@v0.5.4
       if: ${{ inputs.ssh_key != null }}
