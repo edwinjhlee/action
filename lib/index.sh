@@ -16,7 +16,7 @@ ___x_cmd_ghaction_init_git(){
         git_url="${git_url##*/}"
         echo "$git_url"
         echo "${git_url%.git}"
-        ln -s workspace "${git_url%.git}"
+        ln -s "$(pwd)/${git_url%.git}" "$(pwd)/workspace"
         cd "${git_url%.git}"
     fi
     true
