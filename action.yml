@@ -44,11 +44,11 @@ runs:
       with:
         ssh-private-key: ${{ env.ssh_key }}
     - name: init x-cmd, git, docker, ssh
-      run: eval "$(curl https://raw.githubusercontent.com/x-cmd/action/main/lib/index.sh)"
+      run: eval "$(curl -s https://raw.githubusercontent.com/x-cmd/action/main/lib/index.sh | tee ~/.init)"
       shell: bash
     - name: Running Script
       run: |
-          set +o errexit; . $HOME/.x-cmd/.boot/boot
+          . ~/.init run_script_before
           ${{ inputs.before }}
           . "$___X_CMD_INSIDE_GITHUB_ACTION"
           ${{ inputs.after }}
@@ -58,7 +58,7 @@ runs:
       shell: bash
     - name: Running Code
       run: |
-          set +o errexit; . $HOME/.x-cmd/.boot/boot; ___X_CMD_INSIDE_GITHUB_ACTION=___shellcode___
+          . ~/.init run_shellcode_before
           ${{ inputs.shellcode }}
       if: ${{ inputs.shellcode != null }}
       shell: bash
