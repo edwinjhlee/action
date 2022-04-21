@@ -18,6 +18,9 @@ inputs:
   git_ref:
     description: checkout ref
     required: false
+  git_url:
+    description: checkout url
+    required: false
 
   ssh_key:
     description: ssh key
