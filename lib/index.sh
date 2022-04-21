@@ -59,10 +59,26 @@ ___x_cmd_ghaction_init()(
 
 ___x_cmd_ghaction_run(){
     set +o errexit; . $HOME/.x-cmd/.boot/boot
-    eval "$___X_CMD_GHACTION_PREHOOK"
-    [ -f "$___X_CMD_GHACTION_SCRIPT" ] && source "$___X_CMD_GHACTION_SCRIPT"
-    eval "$___X_CMD_GHACTION_CODE"
-    eval "$___X_CMD_GHACTION_POSTHOOK"
+
+    if [ -n "$___X_CMD_GHACTION_PREHOOK" ]; then
+        x log :X "Running PREHOOK."
+        eval "$___X_CMD_GHACTION_PREHOOK"
+    fi
+
+    if [ -f "$___X_CMD_GHACTION_SCRIPT" ]; then
+        x log :X "Running file: $___X_CMD_GHACTION_SCRIPT"
+        source "$___X_CMD_GHACTION_SCRIPT"
+    fi
+
+    if [ -n "$___X_CMD_GHACTION_CODE" ]; then
+        x log :X "Running code."
+        eval "$___X_CMD_GHACTION_CODE"
+    fi
+
+    if [ -n "$___X_CMD_GHACTION_POSTHOOK" ]; then
+        x log :X "Running POSTHOOK."
+        eval "$___X_CMD_GHACTION_POSTHOOK"
+    fi
 }
 
 if [ "$#" -gt 0 ]; then
