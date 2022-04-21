@@ -13,7 +13,7 @@ runs:
           . "$___X_CMD_INSIDE_GITHUB_ACTION"
           ${{ env.after }}
       env:
-        ___X_CMD_INSIDE_GITHUB_ACTION: ${{ input.entrypoint || env.entrypoint || format( '.x-cmd/{0}', github.job ) }}
+        ___X_CMD_INSIDE_GITHUB_ACTION: ${{ inputs.entrypoint || env.entrypoint || format( '.x-cmd/{0}', github.job ) }}
       if: ${{ env.___X_CMD_INSIDE_GITHUB_ACTION != null }}
       shell: bash
     - name: Running Code
