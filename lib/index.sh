@@ -1,3 +1,8 @@
+
+init_x_cmd(){
+    eval "$(curl https://get.x-cmd.com/dev 2>/dev/null)" 2>/dev/null || true; ___X_CMD_IN_CHINA_NET=;
+}
+
 init_ssh_key(){
     [ -z "$ssh_key" ] && return
     echo "github.com,52.74.223.119 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=" >> ~/.ssh/known_hosts
@@ -22,3 +27,8 @@ init_docker(){
         docker buildx create --use
     fi
 }
+
+init_x_cmd
+init_ssh_key
+init_git
+init_docker
