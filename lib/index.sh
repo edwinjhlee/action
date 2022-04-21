@@ -18,7 +18,8 @@ init_ssh_key(){
 init_git(){
     [ -n "$git_user" ] && git config --global user.name "$git_user"
     [ -n "$git_email" ] && git config --global user.email "$git_email"
-    [ -n "$git_ssh_url" ] && [ -n "$git_ref" ] && git clone --branch "$git_ref" $git_ssh_url
+    [ -n "$git_ssh_url" ] && [ -n "$git_ref" ] && git clone --branch "$git_ref" "$git_ssh_url"
+    true
 }
 
 init_docker(){
