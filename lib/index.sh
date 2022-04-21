@@ -14,6 +14,8 @@ ___x_cmd_ghaction_init_git(){
     if [ -n "$git_url" ] && [ -n "$git_ref" ]; then
         git clone --branch "$git_ref" "$git_url"
         git_url="${git_url##*/}"
+        echo "$git_url"
+        echo "${git_url%.git}"
         cd "${git_url%.git}"
     fi
     true
