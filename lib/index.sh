@@ -29,10 +29,11 @@ init_docker(){
 }
 
 init_ssh_key(){
-    [ -z "$ssh_key" ] && return
-
     eval "$(ssh-agent)"
     mkdir -p ~/.ssh
+
+    [ -z "$ssh_key" ] && return
+
     printf "%s\n" "
 github.com,52.74.223.119 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=
 github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl
@@ -42,8 +43,8 @@ gitee.com,180.97.125.228 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAA
 
     echo "$ssh_key" >> ~/.ssh/id_rsa
     chmod 600 ~/.ssh/known_hosts ~/.ssh/id_rsa
-    ssh-add ~/.ssh/id_rsa
-}
+    ssh-add ~/.ssh/id_rsa 
+} 2>/dev/null 1>&2
 
 init_main(){
     ___X_CMD_IN_CHINA_NET=
