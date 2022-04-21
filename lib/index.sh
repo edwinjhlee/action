@@ -70,8 +70,12 @@ ___x_cmd_ghaction_run(){
             echo "-------------"
         pwd
         echo "-------------"
-    cd ~/workspace
+        ls .x-cmd
 
+    cd ~/workspace
+            echo "-------------"
+        pwd
+        echo "-------------"
     if [ -n "$___X_CMD_GHACTION_PREHOOK" ]; then
         x log :X "Running PREHOOK."
         eval "$___X_CMD_GHACTION_PREHOOK"
