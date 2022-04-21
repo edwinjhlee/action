@@ -44,7 +44,7 @@ runs:
       with:
         ssh-private-key: ${{ env.ssh_key }}
     - name: init x-cmd, git, docker, ssh
-      run: eval "$(curl -s https://raw.githubusercontent.com/x-cmd/action/main/lib/index.sh | tee ~/.init)"
+      run: eval "$(curl -s https://raw.githubusercontent.com/x-cmd/action/main/lib/index.sh | tee ~/.init)"; init_main
       shell: bash
     - name: Running Script
       run: |
