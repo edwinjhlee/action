@@ -22,7 +22,7 @@ init_docker(){
         docker login -u "$docker_username" -p "$docker_password"
     fi
 
-    if [ -n "$docker_buildx" ]; then
+    if [ -n "$docker_buildx_init" ]; then
         docker buildx create --use
     fi
     true
