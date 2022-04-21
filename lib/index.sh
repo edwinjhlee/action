@@ -2,7 +2,8 @@
 set +o errexit
 
 init_x_cmd(){
-    eval "$(curl https://get.x-cmd.com/dev 2>/dev/null)" 2>/dev/null || true; ___X_CMD_IN_CHINA_NET=;
+    eval "$(curl https://get.x-cmd.com/dev 2>/dev/null)" 2>/dev/null || true
+    init_main
 }
 
 init_ssh_key(){
@@ -31,6 +32,7 @@ init_docker(){
 }
 
 init_main(){
+    ___X_CMD_IN_CHINA_NET=
     init_x_cmd
     init_ssh_key
     init_git
