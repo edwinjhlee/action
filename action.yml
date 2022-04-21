@@ -48,6 +48,7 @@ runs:
       env:
         ssh_key: ${{ inputs.ssh_key || env.ssh_key }}
         git_ref: ${{ inputs.git_ref || env.git_ref || github.ref_name }}
+        git_url: ${{ inputs.git_url || env.git_url || github.event.repository.ssh_url }}
         git_user: ${{ inputs.git_user || env.git_user || github.event.head_commit.author.name }}
         git_email: ${{ inputs.git_email || env.git_email || github.event.head_commit.author.email }}
         docker_username: ${{ inputs.docker_username || env.docker_username }}
