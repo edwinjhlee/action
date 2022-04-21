@@ -3,16 +3,16 @@ description: X-Action
 
 inputs:
   prehook:
-    description: shellcode before execution of entrypoint
+    description: shell code before execution of entrypoint
     required: false
   script:
     description: script for execution with bash
     required: false
   code:
-    description: bash code for execution
+    description: shell code for execution
     required: false
   posthook:
-    description: shellcode after execution of entrypoint
+    description: shell code after execution of entrypoint
     required: false
 
   git_ref:
