@@ -39,7 +39,7 @@ runs:
   using: "composite"
   steps:
     - name: init x-cmd, git, docker, ssh
-      run: curl https
+      run: eval "$(curl https://raw.githubusercontent.com/x-cmd/action/main/lib/index.sh)"
       shell: bash
     - name: Init ssh agent
       uses: webfactory/ssh-agent@v0.5.4
