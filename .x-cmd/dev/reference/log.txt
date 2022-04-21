@@ -1,0 +1,96 @@
+2022-04-21T12:38:27.2708337Z Requested labels: ubuntu-latest
+2022-04-21T12:38:27.2708393Z Job defined at: x-cmd/action/.github/workflows/cowsay.yml@refs/heads/main
+2022-04-21T12:38:27.2708417Z Waiting for a runner to pick up this job...
+2022-04-21T12:38:28.3422033Z Job is waiting for a hosted runner to come online.
+2022-04-21T12:38:30.9137600Z Job is about to start running on the hosted runner: Hosted Agent (hosted)
+2022-04-21T12:38:34.0143971Z Current runner version: '2.290.1'
+2022-04-21T12:38:34.0175576Z Operating System
+2022-04-21T12:38:34.0176472Z Ubuntu
+2022-04-21T12:38:34.0177163Z 20.04.4
+2022-04-21T12:38:34.0177744Z LTS
+2022-04-21T12:38:34.0178412Z
+------------------------------------------------------------------------------------------------------------------------
+2022-04-21T12:38:34.0179132Z Virtual Environment
+2022-04-21T12:38:34.0179811Z Environment: ubuntu-20.04
+2022-04-21T12:38:34.0180550Z Version: 20220410.2
+2022-04-21T12:38:34.0181532Z Included Software: https://github.com/actions/virtual-environments/blob/ubuntu20/20220410.2/images/linux/Ubuntu2004-Readme.md
+2022-04-21T12:38:34.0182749Z Image Release: https://github.com/actions/virtual-environments/releases/tag/ubuntu20%2F20220410.2
+2022-04-21T12:38:34.0183672Z
+------------------------------------------------------------------------------------------------------------------------
+2022-04-21T12:38:34.0184408Z Virtual Environment Provisioner
+2022-04-21T12:38:34.0185190Z 1.0.0.0-main-20220406-1
+2022-04-21T12:38:34.0185823Z
+------------------------------------------------------------------------------------------------------------------------
+2022-04-21T12:38:34.0187549Z GITHUB_TOKEN Permissions
+2022-04-21T12:38:34.0188572Z Actions: write
+2022-04-21T12:38:34.0189416Z Checks: write
+2022-04-21T12:38:34.0190215Z Contents: write
+2022-04-21T12:38:34.0190869Z Deployments: write
+2022-04-21T12:38:34.0191570Z Discussions: write
+2022-04-21T12:38:34.0192272Z Issues: write
+2022-04-21T12:38:34.0192893Z Metadata: read
+2022-04-21T12:38:34.0193597Z Packages: write
+2022-04-21T12:38:34.0194296Z Pages: write
+2022-04-21T12:38:34.0194922Z PullRequests: write
+2022-04-21T12:38:34.0195677Z RepositoryProjects: write
+2022-04-21T12:38:34.0196405Z SecurityEvents: write
+2022-04-21T12:38:34.0197080Z Statuses: write
+2022-04-21T12:38:34.0197787Z
+------------------------------------------------------------------------------------------------------------------------
+2022-04-21T12:38:34.0202009Z Secret source: Actions
+2022-04-21T12:38:34.0202913Z Prepare workflow directory
+2022-04-21T12:38:34.1368402Z Prepare all required actions
+2022-04-21T12:38:34.1551457Z Getting action download info
+2022-04-21T12:38:34.3897928Z Download action repository 'x-cmd/action@main' (SHA:299f9db3ee234784229d02b83c7870598f307ea1)
+------------------------------------------------------------------------------------------------------------------------
+2022-04-21T12:38:35.3226077Z Run x-cmd/action@main
+2022-04-21T12:38:35.3226600Z with:
+2022-04-21T12:38:35.3227107Z   code: git clone git@github.com:x-cmd/theme.git; ls theme
+2022-04-21T12:38:35.3227613Z env:
+2022-04-21T12:38:35.3236421Z   ssh_key: ***
+2022-04-21T12:38:35.3236867Z
+------------------------------------------------------------------------------------------------------------------------
+2022-04-21T12:38:35.3503081Z Run curl -s https://raw.githubusercontent.com/x-cmd/action/main/lib/index.sh > ~/xghaction
+2022-04-21T12:38:35.3504008Z curl -s https://raw.githubusercontent.com/x-cmd/action/main/lib/index.sh > ~/xghaction
+2022-04-21T12:38:35.3504656Z . ~/xghaction init
+2022-04-21T12:38:35.3562738Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2022-04-21T12:38:35.3563297Z env:
+2022-04-21T12:38:35.3572154Z   ssh_key: ***
+2022-04-21T12:38:35.3572574Z   git_ref: main
+2022-04-21T12:38:35.3573052Z   git_url: git@github.com:x-cmd/action.git
+2022-04-21T12:38:35.3573528Z   git_user: L
+2022-04-21T12:38:35.3573933Z   git_email: l@x-cmd.com
+2022-04-21T12:38:35.3574431Z   docker_username:
+2022-04-21T12:38:35.3574869Z   docker_password:
+2022-04-21T12:38:35.3575280Z   docker_buildx_init:
+2022-04-21T12:38:35.3575714Z
+2022-04-21T12:38:36.7615977Z Cloning into 'action'...
+2022-04-21T12:38:37.0661607Z Warning: Permanently added the ECDSA host key for IP address '140.82.112.3' to the list of known hosts.
+------------------------------------------------------------------------------------------------------------------------
+2022-04-21T12:38:37.8384404Z Run bash ~/xghaction run
+2022-04-21T12:38:37.8384908Z bash ~/xghaction run
+2022-04-21T12:38:37.8435926Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2022-04-21T12:38:37.8436447Z env:
+2022-04-21T12:38:37.8445188Z   ssh_key: ***
+2022-04-21T12:38:37.8445631Z   ___X_CMD_GHACTION_PREHOOK:
+2022-04-21T12:38:37.8446114Z   ___X_CMD_GHACTION_SCRIPT: .x-cmd/cowsay
+2022-04-21T12:38:37.8446729Z   ___X_CMD_GHACTION_CODE: git clone git@github.com:x-cmd/theme.git; ls theme
+2022-04-21T12:38:37.8447530Z   ___X_CMD_GHACTION_POSTHOOK:
+2022-04-21T12:38:37.8447948Z
+------------------------------------------------------------------------------------------------------------------------
+2022-04-21T12:38:37.8699763Z [INF] <X>: Running file: .x-cmd/cowsay
+2022-04-21T12:38:37.8700599Z x is a function
+2022-04-21T12:38:37.8707571Z [INF] <X>: Running code.
+2022-04-21T12:38:37.8724035Z Cloning into 'theme'...
+2022-04-21T12:38:37.8734680Z x ()
+2022-04-21T12:38:37.8737113Z {
+2022-04-21T12:38:37.8737579Z     ___x_cmd_main "$@"
+2022-04-21T12:38:37.8791081Z }
+2022-04-21T12:38:37.8791853Z cowsay
+2022-04-21T12:38:39.0422045Z LICENSE
+2022-04-21T12:38:39.0425477Z dist
+2022-04-21T12:38:39.0428363Z font
+2022-04-21T12:38:39.0429227Z index.yml
+2022-04-21T12:38:39.0474729Z style
+------------------------------------------------------------------------------------------------------------------------
+2022-04-21T12:38:39.0632282Z Cleaning up orphan processes
