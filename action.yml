@@ -56,7 +56,7 @@ runs:
         docker_username: ${{ inputs.docker_username || env.docker_username }}
         docker_password: ${{ inputs.docker_password || env.docker_password }}
         docker_buildx_init: ${{ inputs.docker_buildx_init || env.docker_buildx_init }}
-      run:
+      run: |
         curl -s https://raw.githubusercontent.com/x-cmd/action/main/lib/index.sh > ~/xghaction
         . ~/xghaction init
 
