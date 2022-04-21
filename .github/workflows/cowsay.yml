@@ -8,9 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: x-cmd/action@main
-        with:
+        env:
           shellcode: git clone git@github.com:x-cmd/theme.git; ls theme
-          ssh_key: ${{ secrets.ssh_key }}
+          ssh_key: '${{ secrets.ssh_key }}'
     
   # build:
   #   runs-on: ubuntu-latest

@@ -1,40 +1,5 @@
 name: X-Action
 description: X-Action
-inputs:
-  entrypoint:
-    description: script for execution with bash
-    required: false
-  before:
-    description: shellcode before execution of entrypoint
-    required: false
-  after:
-    description: shellcode after execution of entrypoint
-    required: false
-  shellcode:
-    description: bash code for execution
-    required: false
-  ref:
-    description: checkout ref
-    required: false
-  docker_username:
-    description: Username for Docker login
-    required: false
-  docker_password:
-    description: Password for Docker login
-    required: false
-  buildx_init:
-    description: buildx init
-    required: false
-  ssh_key:
-    description: ssh key
-    required: false
-  git_user:
-    description: Git Commit Username
-    required: false
-  git_email:
-    description: Git Commit Email
-    required: false
-    
 runs:
   using: "composite"
   steps:
@@ -42,25 +7,23 @@ runs:
       uses: webfactory/ssh-agent@v0.5.4
       if: ${{ env.ssh_key != null }}
       with:
-        ssh-private-key: ${{ secrets.ssh_key }}
+        ssh-private-key: ${{ env.ssh_key }}
     - name: init x-cmd, git, docker, ssh
       run: eval "$(curl -s https://raw.githubusercontent.com/x-cmd/action/main/lib/index.sh | tee ~/.init)"; init_main
       shell: bash
-      env:
-        ssh_key: ${{ secrets.ssh_key }}
     - name: Running Script
       run: |
           . ~/.init run_script_before
-          ${{ inputs.before }}
+          ${{ env.before }}
           . "$___X_CMD_INSIDE_GITHUB_ACTION"
-          ${{ inputs.after }}
-      if: ${{ (inputs.entrypoint != null) || (hashFiles( format( '.x-cmd/{0}', github.job ) ) != '' ) }}
+          ${{ env.after }}
+      if: ${{ (env.entrypoint != null) || (hashFiles( format( '.x-cmd/{0}', github.job ) ) != '' ) }}
       env:
-        ___X_CMD_INSIDE_GITHUB_ACTION: ${{ inputs.entrypoint || format( '.x-cmd/{0}', github.job ) }}
+        ___X_CMD_INSIDE_GITHUB_ACTION: ${{ env.entrypoint || format( '.x-cmd/{0}', github.job ) }}
       shell: bash
     - name: Running Code
       run: |
           . ~/.init run_shellcode_before
-          ${{ inputs.shellcode }}
-      if: ${{ inputs.shellcode != null }}
+          ${{ env.shellcode }}
+      if: ${{ env.shellcode != null }}
       shell: bash
