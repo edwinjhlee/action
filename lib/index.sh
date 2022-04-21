@@ -61,6 +61,7 @@ ___x_cmd_ghaction_run(){
     set +o errexit; . $HOME/.x-cmd/.boot/boot
 
     if [ -n "$___X_CMD_GHACTION_PREHOOK" ]; then
+        echo "Should be log here ..."
         x log :X "Running PREHOOK."
         eval "$___X_CMD_GHACTION_PREHOOK"
     fi
