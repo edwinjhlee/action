@@ -9,11 +9,11 @@ jobs:
     steps:
       - uses: x-cmd/action@main
         with:
-          shellcode: xws build linux
-    
+          code: xws build linux
+
   macos:
     runs-on: macos-11
     steps:
       - uses: x-cmd/action@main
         with:
-          shellcode: xws build macos
+          code: xws build macos

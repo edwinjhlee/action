@@ -10,9 +10,9 @@ jobs:
       ssh_key: '${{ secrets.ssh_key }}'
     steps:
       - uses: x-cmd/action@main
-        env:
-          shellcode: git clone git@github.com:x-cmd/theme.git; ls theme
-    
+        with:
+          code: git clone git@github.com:x-cmd/theme.git; ls theme
+
   # build:
   #   runs-on: ubuntu-latest
   #   steps:

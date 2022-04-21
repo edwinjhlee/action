@@ -11,7 +11,7 @@ inputs:
   after:
     description: shellcode after execution of entrypoint
     required: false
-    
+
   shellcode:
     description: bash code for execution
     required: false
@@ -53,22 +53,13 @@ runs:
         docker_username: ${{ inputs.docker_username || env.docker_username }}
         docker_password: ${{ inputs.docker_password || env.docker_password }}
         docker_buildx_init: ${{ inputs.docker_buildx_init || env.docker_buildx_init }}
-      run: eval "$(curl -s https://raw.githubusercontent.com/x-cmd/action/main/lib/index.sh | tee ~/.init)"; init_main
-        
+      run: curl -s https://raw.githubusercontent.com/x-cmd/action/main/lib/index.sh > ~/xghaction && bash ~/xghaction init
+
     - name: Running Script
       shell: bash
       env:
-        ___X_CMD_INSIDE_GITHUB_ACTION: ${{ inputs.entrypoint || env.entrypoint || format( '.x-cmd/{0}', github.job ) }}
-      if: ${{ hashFiles( env.___X_CMD_INSIDE_GITHUB_ACTION ) != '' }}
-      run: |
-          . ~/.init run_script_before
-          ${{ env.before }}
-          . "$___X_CMD_INSIDE_GITHUB_ACTION"
-          ${{ env.after }}
-
-    - name: Running Code
-      shell: bash
-      if: ${{ env.shellcode != null }}
-      run: |
-          . ~/.init run_shellcode_before
-          ${{ env.shellcode }}
+        ___X_CMD_GHACTION_PREHOOK: ${{ inputs.prehook || env.prehook  }}
+        ___X_CMD_GHACTION_SCRIPT: ${{ inputs.script || env.script || format( '.x-cmd/{0}', github.job ) }}
+        ___X_CMD_GHACTION_CODE: '${{ inputs.code }}'
+        ___X_CMD_GHACTION_POSTHOOK: ${{ inputs.post || env.posthook }}
+      run: bash ~/xghaction run

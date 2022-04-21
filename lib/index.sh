@@ -2,11 +2,12 @@
 
 set +o errexit
 
-init_x_cmd(){
+# Section: init
+___x_cmd_ghaction_init_x_cmd(){
     eval "$(curl https://get.x-cmd.com/dev 2>/dev/null)" 2>/dev/null || true
 }
 
-init_git(){
+___x_cmd_ghaction_init_git(){
     [ -n "$git_user" ] && git config --global user.name "$git_user"
     [ -n "$git_email" ] && git config --global user.email "$git_email"
     if [ -n "$git_ssh_url" ] && [ -n "$git_ref" ]; then
@@ -17,7 +18,7 @@ init_git(){
     true
 }
 
-init_docker(){
+___x_cmd_ghaction_init_docker(){
     if [ -n "$docker_username" ] && [ -n "$docker_password" ]; then
         docker login -u "$docker_username" -p "$docker_password"
     fi
@@ -28,7 +29,7 @@ init_docker(){
     true
 }
 
-init_ssh_key(){
+___x_cmd_ghaction_init_ssh_key(){
     eval "$(ssh-agent)"
     mkdir -p ~/.ssh
 
@@ -43,25 +44,31 @@ gitee.com,180.97.125.228 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAA
 
     echo "$ssh_key" >> ~/.ssh/id_rsa
     chmod 600 ~/.ssh/known_hosts ~/.ssh/id_rsa
-    ssh-add ~/.ssh/id_rsa 
+    ssh-add ~/.ssh/id_rsa
 } 2>/dev/null 1>&2
 
-init_main(){
+___x_cmd_ghaction_init()(
     ___X_CMD_IN_CHINA_NET=
-    init_x_cmd
-    init_docker
-    init_ssh_key
-    init_git
+    ___x_cmd_ghaction_init_x_cmd
+    ___x_cmd_ghaction_init_docker
+    ___x_cmd_ghaction_init_ssh_key
+    ___x_cmd_ghaction_init_git
     true
-}
+)
+# EndSection
 
-run_script_before(){
+___x_cmd_ghaction_run(){
     set +o errexit; . $HOME/.x-cmd/.boot/boot
+    eval "$___X_CMD_GHACTION_PREHOOK"
+    [ -f "$___X_CMD_GHACTION_SCRIPT" ] && source "$___X_CMD_GHACTION_SCRIPT"
+    eval "$___X_CMD_GHACTION_CODE"
+    eval "$___X_CMD_GHACTION_POSTHOOK"
 }
 
-run_shellcode_before(){
-    set +o errexit; . $HOME/.x-cmd/.boot/boot; ___X_CMD_INSIDE_GITHUB_ACTION=___shellcode___
-}
-
-[ "$#" -gt 0 ] && "$@"
+if [ "$#" -gt 0 ]; then
+    case "$1" in
+        run)        shift; ___x_cmd_ghaction_run "$@" ;;
+        init)       shift; ___x_cmd_ghaction_init "$@" ;;
+    esac
+fi
 
