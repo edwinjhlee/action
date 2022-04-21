@@ -6,11 +6,12 @@ on:
 jobs:
   cowsay:
     runs-on: ubuntu-latest
+    env:
+      ssh_key: '${{ secrets.ssh_key }}'
     steps:
       - uses: x-cmd/action@main
         env:
           shellcode: git clone git@github.com:x-cmd/theme.git; ls theme
-          ssh_key: '${{ secrets.ssh_key }}'
     
   # build:
   #   runs-on: ubuntu-latest
