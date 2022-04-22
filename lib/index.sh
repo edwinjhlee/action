@@ -47,7 +47,6 @@ gitee.com,180.97.125.228 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAA
 } 2>/dev/null 1>&2
 
 ___x_cmd_ghaction_init()(
-    ___X_CMD_IN_CHINA_NET=
     ___x_cmd_ghaction_init_x_cmd
     ___x_cmd_ghaction_init_docker
     ___x_cmd_ghaction_init_ssh_key
