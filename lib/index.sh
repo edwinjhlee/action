@@ -4,31 +4,46 @@ set +o errexit
 
 # Section: init
 ___x_cmd_ghaction_init_x_cmd(){
+    x log :init "x-cmd/dev"
     eval "$(curl https://get.x-cmd.com/dev 2>/dev/null)" 2>/dev/null || true
 }
 
 ___x_cmd_ghaction_init_git(){
-    [ -n "$git_user" ] && git config --global user.name "$git_user"
-    [ -n "$git_email" ] && git config --global user.email "$git_email"
+    if [ -n "$git_user" ]; then
+        x log :init "git: config user.name"
+        git config --global user.name "$git_user"
+    fi
+
+    if [ -n "$git_email" ]; then
+        x log :init "git: config user.email"
+        git config --global user.email "$git_email"
+    fi
+
     if [ -n "$git_url" ] && [ -n "$git_ref" ]; then
-        git clone --branch "$git_ref" "$git_url"
-        git_url="${git_url##*/}"
-        ln -s "$(pwd)/${git_url%.git}" "$(pwd)/workspace"
-        cd "${git_url%.git}"
+        x log :init "git: cloning [ref=$git_ref] from [url=$git_url]"
+        git clone --branch "$git_ref" "$git_url" && {
+            git_url="${git_url##*/}"
+            x log :init "git: Creating [link=$(pwd)/workspace] to [target=$(pwd)/${git_url%.git}]"
+            ln -s "$(pwd)/${git_url%.git}" "$(pwd)/workspace"
+        }
     fi
 }
 
 ___x_cmd_ghaction_init_docker(){
     if [ -n "$docker_username" ] && [ -n "$docker_password" ]; then
+        x log :init "docker: login [username=$docker_username]"
         docker login -u "$docker_username" -p "$docker_password"
     fi
 
     if [ -n "$docker_buildx_init" ]; then
+        x log :init "docker: buildx init"
         docker buildx create --use
     fi
 }
 
 ___x_cmd_ghaction_init_ssh_key(){
+    x log :init "ssh: loding ssh-agent and create ~/.ssh and add known_hosts"
+
     eval "$(ssh-agent)"
     mkdir -p ~/.ssh
 
@@ -47,6 +62,8 @@ gitee.com,180.97.125.228 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAA
 } 2>/dev/null 1>&2
 
 ___x_cmd_ghaction_init()(
+    set -o errexit
+
     ___x_cmd_ghaction_init_x_cmd
     ___x_cmd_ghaction_init_docker
     ___x_cmd_ghaction_init_ssh_key
