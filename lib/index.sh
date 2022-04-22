@@ -5,7 +5,7 @@ set +o errexit
 # Section: init
 ___x_cmd_ghaction_init_x_cmd(){
     # x log :init "x-cmd/dev"
-    eval "$(curl https://get.x-cmd.com/dev 2>/dev/null)" 2>/dev/null || true
+    eval "$(curl https://get.x-cmd.com 2>/dev/null)" 2>/dev/null || true
 }
 
 ___x_cmd_ghaction_init_git(){
