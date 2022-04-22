@@ -7,6 +7,7 @@ ___x_cmd_ghaction_init_x_cmd(){
     # x log :init "x-cmd/dev"
     ___X_CMD_IN_CHINA_NET=
     eval "$(curl https://raw.githubusercontent.com/x-bash/get/main/index.html 2>/dev/null)" 2>/dev/null || true
+    echo "Using github CDN..."
     # eval "$(curl https://get.x-cmd.com 2>/dev/null)" 2>/dev/null || true
     xrc mirror
 }
