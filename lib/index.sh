@@ -7,6 +7,7 @@ ___x_cmd_ghaction_init_x_cmd(){
     # x log :init "x-cmd/dev"
     ___X_CMD_IN_CHINA_NET=
     eval "$(curl https://get.x-cmd.com 2>/dev/null)" 2>/dev/null || true
+    xrc mirror
 }
 
 ___x_cmd_ghaction_init_git(){
