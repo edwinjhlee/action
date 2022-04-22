@@ -58,7 +58,7 @@ runs:
         docker_buildx_init: ${{ inputs.docker_buildx_init || env.docker_buildx_init }}
       run: |
         curl -s https://raw.githubusercontent.com/x-cmd/action/main/lib/index.sh > ~/xghaction
-        bash ~/xghaction init
+        . ~/xghaction init
 
     - name: Running Script
       shell: bash
@@ -67,4 +67,4 @@ runs:
         ___X_CMD_GHACTION_SCRIPT: ${{ inputs.script || env.script || format( '.x-cmd/{0}', github.job ) }}
         ___X_CMD_GHACTION_CODE: '${{ inputs.code }}'
         ___X_CMD_GHACTION_POSTHOOK: ${{ inputs.posthook || env.posthook }}
-      run: bash ~/xghaction run
+      run: . ~/xghaction run
