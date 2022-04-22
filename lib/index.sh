@@ -72,7 +72,8 @@ ___x_cmd_ghaction_init()(
 # EndSection
 
 ___x_cmd_ghaction_run(){
-    set +o errexit; set +o pipefail; . $HOME/.x-cmd/.boot/boot
+    set +o errexit; . $HOME/.x-cmd/.boot/boot
+    # set +o pipefail;
     cd workspace
     if [ -n "$___X_CMD_GHACTION_PREHOOK" ]; then
         x log :X "Running PREHOOK."
