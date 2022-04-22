@@ -58,7 +58,7 @@ runs:
         docker_buildx_init: ${{ inputs.docker_buildx_init || env.docker_buildx_init }}
       run: |
         curl -s https://raw.githubusercontent.com/x-cmd/action/main/lib/index.sh > ~/xghaction
-        . ~/xghaction init
+        bash ~/xghaction init
 
     - name: Running Script
       shell: bash

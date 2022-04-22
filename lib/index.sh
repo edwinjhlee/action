@@ -16,7 +16,6 @@ ___x_cmd_ghaction_init_git(){
         ln -s "$(pwd)/${git_url%.git}" "$(pwd)/workspace"
         cd "${git_url%.git}"
     fi
-    true
 }
 
 ___x_cmd_ghaction_init_docker(){
@@ -27,7 +26,6 @@ ___x_cmd_ghaction_init_docker(){
     if [ -n "$docker_buildx_init" ]; then
         docker buildx create --use
     fi
-    true
 }
 
 ___x_cmd_ghaction_init_ssh_key(){
@@ -54,7 +52,6 @@ ___x_cmd_ghaction_init()(
     ___x_cmd_ghaction_init_docker
     ___x_cmd_ghaction_init_ssh_key
     ___x_cmd_ghaction_init_git
-    true
 )
 # EndSection
 
@@ -87,6 +84,5 @@ if [ "$#" -gt 0 ]; then
         run)        shift; ___x_cmd_ghaction_run "$@" ;;
         init)       shift; ___x_cmd_ghaction_init "$@" ;;
     esac
-    true
 fi
 
