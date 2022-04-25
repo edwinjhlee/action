@@ -56,6 +56,7 @@ runs:
         docker_username: ${{ inputs.docker_username || env.docker_username }}
         docker_password: ${{ inputs.docker_password || env.docker_password }}
         docker_buildx_init: ${{ inputs.docker_buildx_init || env.docker_buildx_init }}
+        ___X_CMD_LOG_C_TF: "1"
       run: |
         curl -s https://raw.githubusercontent.com/x-cmd/action/main/lib/index.sh > ~/xghaction
         . ~/xghaction init
@@ -67,4 +68,5 @@ runs:
         ___X_CMD_GHACTION_SCRIPT: ${{ inputs.script || env.script || format( '.x-cmd/{0}', github.job ) }}
         ___X_CMD_GHACTION_CODE: '${{ inputs.code }}'
         ___X_CMD_GHACTION_POSTHOOK: ${{ inputs.posthook || env.posthook }}
+        ___X_CMD_LOG_C_TF: "1"
       run: . ~/xghaction run
