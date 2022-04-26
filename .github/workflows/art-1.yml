@@ -1,0 +1,30 @@
+name: Publish-Cron
+on:
+  # push:
+  workflow_dispatch:
+
+jobs:
+  publisher:
+    runs-on: ubuntu-latest
+    env:
+      ssh_key: ${{ secrets.SSH_PRIVATE_KEY }}
+      git_user: agent-zero
+      git_email: 0@x-cmd.com
+      ___X_CMD_CODESORUCE_REPO: dev
+      CONCURRENCY: 10
+    steps:
+      - name: prepare-artifact
+        uses: actions/download-artifacts@main
+      - name: main
+        uses: x-cmd/action@main
+        with:
+          # code: x log +yanfa && x ws pub || true
+          code: x ws pub || true
+      - name: upload-data
+      - uses: actions/upload-artifact@v3
+        with:
+          name: log
+          path: ~/workspace/artifact
+            # path/output/bin/
+            # path/output/test-results
+            # !path/**/*.tmp

@@ -70,3 +70,10 @@ runs:
         ___X_CMD_GHACTION_POSTHOOK: ${{ inputs.posthook || env.posthook }}
         ___X_CMD_LOG_C_TF: "1"
       run: . ~/xghaction run
+
+    - name: Store Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: artifact
+        path: ${{ inputs.artifact_path || "~/workspace/.artifact" }}
+        if-no-files-found: ${{ inputs.artifact_not_found || "ignore" }}
