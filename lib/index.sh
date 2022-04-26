@@ -9,6 +9,24 @@ ___x_cmd_ghaction_init_x_cmd(){
     # eval "$(curl https://get.x-cmd.com 2>/dev/null)" 2>/dev/null || true
 }
 
+___x_cmd_ghaction_init_git_clone_current(){
+    if [ -n "$ws_repo" ] && [ -n "$ws_ref" ]; then
+        # git clone https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}
+
+        local owner="${ws_repo%/*}"
+        local repo="${ws_repo#*/}"
+
+        local url="https://${owner}:${GITHUB_TOKEN}@github.com/${repo}"
+
+        x log :init "git: cloning [ref=$ws_ref] from [url=$url]"
+        git clone --branch "$ws_ref" "$url" && {
+            git_url="${git_url##*/}"
+            x log :init "git: Creating [link=$(pwd)/ws] to [target=$(pwd)/$repo]"
+            ln -s "$(pwd)/$repo" "$(pwd)/ws"
+        }
+    fi
+}
+
 ___x_cmd_ghaction_init_git(){
     if [ -n "$git_user" ]; then
         x log :init "git: config user.name"
@@ -20,14 +38,7 @@ ___x_cmd_ghaction_init_git(){
         git config --global user.email "$git_email"
     fi
 
-    if [ -n "$git_url" ] && [ -n "$git_ref" ]; then
-        x log :init "git: cloning [ref=$git_ref] from [url=$git_url]"
-        git clone --branch "$git_ref" "$git_url" && {
-            git_url="${git_url##*/}"
-            x log :init "git: Creating [link=$(pwd)/workspace] to [target=$(pwd)/${git_url%.git}]"
-            ln -s "$(pwd)/${git_url%.git}" "$(pwd)/workspace"
-        }
-    fi
+    ___x_cmd_ghaction_init_git_clone_current
 }
 
 ___x_cmd_ghaction_init_docker(){
@@ -75,7 +86,7 @@ ___x_cmd_ghaction_init()(
 ___x_cmd_ghaction_run(){
     set +o errexit; . $HOME/.x-cmd/.boot/boot
     # set +o pipefail;
-    cd workspace
+    cd ws
     if [ -n "$___X_CMD_GHACTION_PREHOOK" ]; then
         x log :X "Running PREHOOK."
         eval "$___X_CMD_GHACTION_PREHOOK"
