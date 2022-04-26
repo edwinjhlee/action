@@ -42,6 +42,32 @@ inputs:
     description: buildx init
     required: false
 
+  artifact_name:
+    description: artifact_name, default is "artifact"
+    required: false
+  artifact_path:
+    description: artifact_path, default is "~/workspace/.artifact"
+    required: false
+  artifact_not_found:
+    description: "Candidates: [warn | error | ignore]"
+    required: false
+  artifact_retention_days:
+    description: "Retention days: 1-90"
+    required: false
+
+  issue_trigger:
+    description: "[fail | always | never]"
+    required: false
+  issue_title:
+    description: title of issue opening
+    required: false
+  issue_assignees:
+    description: assignees for issue
+    required: false
+  issue_template:
+    description: template
+    required: false
+
 runs:
   using: "composite"
   steps:
@@ -74,6 +100,19 @@ runs:
     - name: Store Artifact
       uses: actions/upload-artifact@v3
       with:
-        name: artifact
+        name: ${{ inputs.artifact_name || env.artifact_name || "artifact" }}
         path: ${{ inputs.artifact_path || "~/workspace/.artifact" }}
         if-no-files-found: ${{ inputs.artifact_not_found || "ignore" }}
+        retention-days: ${{ inputs.artifact_retention_days || env.artifact_retention_days || "10" }}
+
+    # Should Upload the artifact using the issue api
+    - name: Issue To Preserve
+      uses: JasonEtco/create-an-issue@v2
+      with:
+        if: ${{ ( inputs.issue_trigger || env.issue_trigger || "never" ) != "never" }}
+        name: ${{ inputs.issue_name }}
+        assignees: ${{ inputs.issue_assignees || env.issue_assignees }}
+        milestone: ${{ inputs.issue_milestone || env.issue_milestone }}
+        filename: ${{ inputs.issue_template || env.issue_template }}
+        update_existing: true
+        search_existing: "all"
