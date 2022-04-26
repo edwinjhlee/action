@@ -49,8 +49,8 @@ runs:
       shell: bash
       env:
         ssh_key: ${{ inputs.ssh_key || env.ssh_key }}
-        ws_repo: ${{ inputs.ws_repo || github.repository }}
-        ws_repo_ref: ${{ inputs.ws_repo_ref || env.git_ref || github.ref_name }}
+        ws_repo: ${{ inputs.ws_repo || env.ws_repo || github.repository }}
+        ws_repo_ref: ${{ inputs.ws_repo_ref || env.ws_repo_ref || github.ref_name }}
         git_user: ${{ inputs.git_user || env.git_user || github.event.head_commit.author.name }}
         git_email: ${{ inputs.git_email || env.git_email || github.event.head_commit.author.email }}
         docker_username: ${{ inputs.docker_username || env.docker_username }}
