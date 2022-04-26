@@ -10,19 +10,19 @@ ___x_cmd_ghaction_init_x_cmd(){
 }
 
 ___x_cmd_ghaction_init_git_clone_current(){
-    if [ -n "$git_repo" ] && [ -n "$git_ref" ]; then
+    if [ -n "$ws_repo" ] && [ -n "$ws_ref" ]; then
         # git clone https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}
 
-        local owner="${git_repo%/*}"
-        local repo="${git_repo#*/}"
+        local owner="${ws_repo%/*}"
+        local repo="${ws_repo#*/}"
 
         local url="https://${owner}:${GITHUB_TOKEN}@github.com/${repo}"
 
-        x log :init "git: cloning [ref=$git_ref] from [url=$url]"
-        git clone --branch "$git_ref" "$url" && {
+        x log :init "git: cloning [ref=$ws_ref] from [url=$url]"
+        git clone --branch "$ws_ref" "$url" && {
             git_url="${git_url##*/}"
-            x log :init "git: Creating [link=$(pwd)/workspace] to [target=$(pwd)/${git_url%.git}]"
-            ln -s "$(pwd)/${git_url%.git}" "$(pwd)/workspace"
+            x log :init "git: Creating [link=$(pwd)/ws] to [target=$(pwd)/$repo]"
+            ln -s "$(pwd)/$repo" "$(pwd)/ws"
         }
     fi
 }
@@ -86,7 +86,7 @@ ___x_cmd_ghaction_init()(
 ___x_cmd_ghaction_run(){
     set +o errexit; . $HOME/.x-cmd/.boot/boot
     # set +o pipefail;
-    cd workspace
+    cd ws
     if [ -n "$___X_CMD_GHACTION_PREHOOK" ]; then
         x log :X "Running PREHOOK."
         eval "$___X_CMD_GHACTION_PREHOOK"
