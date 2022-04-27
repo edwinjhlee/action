@@ -16,7 +16,7 @@ jobs:
       - name: main
         uses: x-cmd/action@dev
         with:
-          code: x log +yanfa && x ws pub || true
-          # code: x ws push || true
+          # code: x log +yanfa && x ws pub || true
+          code: x ws art || true
           artifact_name: artifact
-          artifact_path: ~/workspace/artifact
+          artifact_path: ~/ws/x-cmd.error.log
