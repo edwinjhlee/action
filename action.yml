@@ -101,6 +101,11 @@ runs:
         ___X_CMD_LOG_C_TF: "1"
       run: . ~/xghaction run
 
+    - name: test1
+      shell: bash
+      run: |
+        pwd
+
     - name: Store Artifact
       uses: actions/upload-artifact@v3
       with:
@@ -118,7 +123,7 @@ runs:
     - name: test
       shell: bash
       run: |
-        pwd
+        cd ws
 
     # Should Upload the artifact using the issue api
     - name: Issue To Preserve
