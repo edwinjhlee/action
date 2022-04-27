@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  publish:
+  publisher:
     runs-on: ubuntu-latest
     env:
       ssh_key: ${{ secrets.SSH_PRIVATE_KEY }}
@@ -13,8 +13,6 @@ jobs:
       ___X_CMD_CODESORUCE_REPO: dev
       CONCURRENCY: 10
     steps:
-      - name: prepare-artifact
-        uses: actions/download-artifacts@main
       - name: main
         uses: x-cmd/action@dev
         with:
