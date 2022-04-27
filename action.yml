@@ -119,7 +119,8 @@ runs:
     - name: Issue To Preserve
       if: ${{ ( inputs.issue_trigger || env.issue_trigger || 'never' ) != 'never' }}
       uses: JasonEtco/create-an-issue@v2
-      run: pwd
+      run: |
+        pwd
       with:
         assignees: ${{ inputs.issue_assignees || env.issue_assignees }}
         milestone: ${{ inputs.issue_milestone || env.issue_milestone }}
