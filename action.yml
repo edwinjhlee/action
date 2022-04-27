@@ -103,22 +103,16 @@ runs:
 
     - name: Store Artifact
       uses: actions/upload-artifact@v3
+      id: upload
       with:
         name: ${{ inputs.artifact_name || env.artifact_name || 'artifact' }}
         path: ${{ inputs.artifact_path || '~/.artifact' }}
         if-no-files-found: ${{ inputs.artifact_not_found || 'ignore' }}
         retention-days: ${{ inputs.artifact_retention_days || env.artifact_retention_days || '10' }}
 
-    # - name: Download Artifact
-    #   uses: actions/download-artifact@v3
-    #   id: download
-    #   with:
-    #     name: ${{ inputs.artifact_name || env.artifact_name || 'artifact' }}
-    #     path: ${{ inputs.artifact_path || '~/.artifact' }}
-
-    # - name: 'Echo download path'
-    #   shell: bash
-    #   run: echo ${{steps.download.outputs.}}
+    - name: 'Echo download path'
+      shell: bash
+      run: echo ${{steps.upload.outputs}}
 
     # Should Upload the artifact using the issue api
     # - uses: actions/checkout@v2
