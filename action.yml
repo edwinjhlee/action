@@ -116,13 +116,13 @@ runs:
         path: ${{ inputs.artifact_path || '~/.artifact' }}
 
     # Should Upload the artifact using the issue api
-    # - name: Issue To Preserve
-    #   uses: JasonEtco/create-an-issue@v2
-    #   with:
-    #     if: ${{ ( inputs.issue_trigger || env.issue_trigger || "never" ) != "never" }}
-    #     name: ${{ inputs.issue_name }}
-    #     assignees: ${{ inputs.issue_assignees || env.issue_assignees }}
-    #     milestone: ${{ inputs.issue_milestone || env.issue_milestone }}
-    #     filename: ${{ inputs.issue_template || env.issue_template }}
-    #     update_existing: true
-    #     search_existing: "all"
+    - name: Issue To Preserve
+      uses: JasonEtco/create-an-issue@v2
+      with:
+        if: ${{ ( inputs.issue_trigger || env.issue_trigger || "never" ) != "never" }}
+        name: ${{ inputs.issue_name }}
+        assignees: ${{ inputs.issue_assignees || env.issue_assignees }}
+        milestone: ${{ inputs.issue_milestone || env.issue_milestone }}
+        filename: ${{ inputs.issue_template || env.issue_template }}
+        update_existing: true
+        search_existing: "all"
