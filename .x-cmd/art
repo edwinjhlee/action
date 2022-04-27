@@ -1,6 +1,7 @@
 type x
-mkdir .artifact
 echo "$ACTIONS_RUNTIME_URL"
 echo "$GITHUB_RUN_ID"
-# printf "%s\n" "[ERR]: Test" > ~/.artifact
-# cat ~/.artifact
+mkdir .artifact
+printf "%s\n" "[ERR]: Test1" > .artifact/test1
+printf "%s\n" "[ERR]: Test2" > .artifact/test2
+cat .artifact/test
