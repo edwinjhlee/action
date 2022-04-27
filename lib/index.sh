@@ -24,6 +24,7 @@ ___x_cmd_ghaction_init_git_clone_current(){
         git clone --branch "$ws_ref" "$url" && {
             x log :init "git: Creating [link=$(pwd)/ws] to [target=$(pwd)/$repo]"
             ln -s "$(pwd)/$repo" "$(pwd)/ws"
+            ls "$(pwd)/ws"
         }
     fi
 }
