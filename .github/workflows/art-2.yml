@@ -18,4 +18,4 @@ jobs:
         with:
           # code: x log +yanfa && x ws pub || true
           code: x ws pub || true
-          artifact_name: artifact1
+          artifact_name: artifact
