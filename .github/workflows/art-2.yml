@@ -17,5 +17,5 @@ jobs:
         uses: x-cmd/action@dev
         with:
           # code: x log +yanfa && x ws pub || true
-          code: x ws pub || true
+          code: x ws build || true
           artifact_name: artifact
