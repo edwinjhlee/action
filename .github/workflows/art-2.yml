@@ -1,4 +1,4 @@
-name: Publish-Cron
+name: Publish-Cron-test
 on:
   # push:
   workflow_dispatch:
