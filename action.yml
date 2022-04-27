@@ -104,19 +104,19 @@ runs:
     - name: Store Artifact
       uses: actions/upload-artifact@v3
       with:
-        name: ${{ inputs.artifact_name || env.artifact_name || 'artifact' }}
-        path: ${{ inputs.artifact_path || "~/workspace/.artifact" }}
-        if-no-files-found: ${{ inputs.artifact_not_found || 'ignore' }}
+        name: ${{ inputs.artifact_name || env.artifact_name || artifact }}
+        path: ${{ inputs.artifact_path || ~/workspace/.artifact }}
+        if-no-files-found: ${{ inputs.artifact_not_found || format('ignore') }}
         retention-days: ${{ inputs.artifact_retention_days || env.artifact_retention_days || '10' }}
 
     # Should Upload the artifact using the issue api
-    - name: Issue To Preserve
-      uses: JasonEtco/create-an-issue@v2
-      with:
-        if: ${{ ( inputs.issue_trigger || env.issue_trigger || "never" ) != "never" }}
-        name: ${{ inputs.issue_name }}
-        assignees: ${{ inputs.issue_assignees || env.issue_assignees }}
-        milestone: ${{ inputs.issue_milestone || env.issue_milestone }}
-        filename: ${{ inputs.issue_template || env.issue_template }}
-        update_existing: true
-        search_existing: "all"
+    # - name: Issue To Preserve
+    #   uses: JasonEtco/create-an-issue@v2
+    #   with:
+    #     if: ${{ ( inputs.issue_trigger || env.issue_trigger || "never" ) != "never" }}
+    #     name: ${{ inputs.issue_name }}
+    #     assignees: ${{ inputs.issue_assignees || env.issue_assignees }}
+    #     milestone: ${{ inputs.issue_milestone || env.issue_milestone }}
+    #     filename: ${{ inputs.issue_template || env.issue_template }}
+    #     update_existing: true
+    #     search_existing: "all"
