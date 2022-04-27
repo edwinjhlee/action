@@ -104,10 +104,10 @@ runs:
     - name: Store Artifact
       uses: actions/upload-artifact@v3
       with:
-        name: ${{ inputs.artifact_name || env.artifact_name || "artifact1" }}
-        path: ${{ inputs.artifact_path || "~/workspace/.artifact" }}
-        if-no-files-found: ${{ inputs.artifact_not_found || "ignore" }}
-        retention-days: ${{ inputs.artifact_retention_days || env.artifact_retention_days || "10" }}
+        name: ${{ inputs.artifact_name || env.artifact_name || artifact1 }}
+        path: ${{ inputs.artifact_path || ~/workspace/.artifact }}
+        if-no-files-found: ${{ inputs.artifact_not_found || ignore }}
+        retention-days: ${{ inputs.artifact_retention_days || env.artifact_retention_days || 10 }}
 
     # Should Upload the artifact using the issue api
     # - name: Issue To Preserve
