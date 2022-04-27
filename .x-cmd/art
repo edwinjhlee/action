@@ -1,4 +1,4 @@
 type x
-mkdir ~/workspace/artifact/
-printf "%s\n" "[ERR]: Test" > ~/workspace/artifact/x-cmd.error.log
+mkdir ~/ws/.artifact/
+printf "%s\n" "[ERR]: Test" > ~/ws/.artifact/x-cmd.error.log
 # cat ~/workspace/artifact/x-cmd.error.log
