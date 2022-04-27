@@ -20,4 +20,5 @@ jobs:
           # code: x log +yanfa && x ws pub || true
           code: x ws art || true
           artifact_name: artifact
+          issue_trigger: true
           issue_template: .github/art-test.md
