@@ -1,6 +1,6 @@
 name: Publish-Cron-Test
 on:
-  # push:
+  push:
   workflow_dispatch:
 
 jobs:
