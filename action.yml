@@ -121,10 +121,9 @@ runs:
         path: ${{ inputs.artifact_path || '~/.artifact' }}
 
     # Should Upload the artifact using the issue api
+    - uses: actions/checkout@v2
     - name: Issue To Preserve
       if: ${{ ( inputs.issue_trigger || env.issue_trigger || 'never' ) != 'never' }}
-      run: |
-        cd ws
       uses: JasonEtco/create-an-issue@v2
       with:
         assignees: ${{ inputs.issue_assignees || env.issue_assignees }}
