@@ -1,6 +1,6 @@
 name: Publish-Cron-Test
 on:
-  push:
+  # push:
   workflow_dispatch:
 
 jobs:
@@ -15,7 +15,7 @@ jobs:
       CONCURRENCY: 10
     steps:
       - name: main
-        uses: x-cmd/action@dev
+        uses: x-cmd/action@main
         with:
           # code: x log +yanfa && x ws pub || true
           code: x ws art || true
