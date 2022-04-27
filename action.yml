@@ -101,11 +101,6 @@ runs:
         ___X_CMD_LOG_C_TF: "1"
       run: . ~/xghaction run
 
-    - name: test1
-      shell: bash
-      run: |
-        pwd
-
     - name: Store Artifact
       uses: actions/upload-artifact@v3
       with:
@@ -119,6 +114,17 @@ runs:
       with:
         name: ${{ inputs.artifact_name || env.artifact_name || 'artifact' }}
         path: ${{ inputs.artifact_path || '~/.artifact' }}
+    - name: test1
+      shell: bash
+      run: |
+        pwd
+        cd ws
+        pwd
+
+    - name: test2
+      shell: bash
+      run: |
+        pwd
 
     # Should Upload the artifact using the issue api
     - uses: actions/checkout@v2
