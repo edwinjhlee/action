@@ -15,7 +15,7 @@ inputs:
     description: shell code after execution of entrypoint
     required: false
 
-  ws_repo:
+  ws_owner_repo:
     description: <owner>/<repo>
     required: false
   ws_repo_ref:
@@ -79,7 +79,7 @@ runs:
       env:
         github_token: ${{ inputs.github_token || env.github_token }}
         ssh_key: ${{ inputs.ssh_key || env.ssh_key }}
-        ws_repo: ${{ inputs.ws_repo || env.ws_repo || github.repository }}
+        ws_owner_repo: ${{ inputs.ws_owner_repo || env.ws_owner_repo || github.repository }}
         ws_repo_ref: ${{ inputs.ws_repo_ref || env.ws_repo_ref || github.ref_name }}
         git_user: ${{ inputs.git_user || env.git_user || github.event.head_commit.author.name }}
         git_email: ${{ inputs.git_email || env.git_email || github.event.head_commit.author.email }}

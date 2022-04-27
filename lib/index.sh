@@ -10,21 +10,20 @@ ___x_cmd_ghaction_init_x_cmd(){
 }
 
 ___x_cmd_ghaction_init_git_clone_current(){
-    if [ -n "$ws_repo" ] && [ -n "$ws_ref" ]; then
-        local repo="${ws_repo#*/}"
+    if [ -n "$ws_owner_repo" ] && [ -n "$ws_repo_ref" ]; then
+        local repo="${ws_owner_repo#*/}"
         local url
         if [ -n "$github_token" ]; then
-            local owner="${ws_repo%/*}"
-            url="https://${owner}:${github_token}@github.com/${ws_repo}.git"
+            local owner="${ws_owner_repo%/*}"
+            url="https://${owner}:${github_token}@github.com/${ws_owner_repo}.git"
         else
-            url="https://github.com/${ws_repo}.git"
+            url="https://github.com/${ws_owner_repo}.git"
         fi
 
-        x log :init "git: cloning [ref=$ws_ref] from [url=$url]"
-        git clone --branch "$ws_ref" "$url" && {
+        x log :init "git: cloning [ref=$ws_repo_ref] from [url=$url]"
+        git clone --branch "$ws_repo_ref" "$url" && {
             x log :init "git: Creating [link=$(pwd)/ws] to [target=$(pwd)/$repo]"
             ln -s "$(pwd)/$repo" "$(pwd)/ws"
-            ls "$(pwd)/ws"
         }
     fi
 }
