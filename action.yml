@@ -49,7 +49,7 @@ inputs:
     description: artifact_name, default is "artifact"
     required: false
   artifact_path:
-    description: artifact_path, default is "~/.artifact"
+    description: artifact_path, default is "~/ws/.artifact"
     required: false
   artifact_not_found:
     description: "Candidates: [warn | error | ignore]"
@@ -106,13 +106,13 @@ runs:
       id: upload
       with:
         name: ${{ inputs.artifact_name || env.artifact_name || 'artifact' }}
-        path: ${{ inputs.artifact_path || '~/.artifact' }}
+        path: ${{ inputs.artifact_path || '~/ws/.artifact' }}
         if-no-files-found: ${{ inputs.artifact_not_found || 'ignore' }}
         retention-days: ${{ inputs.artifact_retention_days || env.artifact_retention_days || '10' }}
 
     - name: 'Echo download path'
       shell: bash
-      run: echo ${{steps.upload.outputs}}
+      run: echo ${{steps.upload.outputs.artifact_id}}
 
     # Should Upload the artifact using the issue api
     # - uses: actions/checkout@v2

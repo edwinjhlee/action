@@ -1,3 +1,4 @@
 type x
-printf "%s\n" "[ERR]: Test" > ~/.artifact
+mkdir .artifact
+# printf "%s\n" "[ERR]: Test" > ~/.artifact
 # cat ~/.artifact
