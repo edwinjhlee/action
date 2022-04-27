@@ -109,6 +109,7 @@ runs:
         if-no-files-found: ${{ inputs.artifact_not_found || 'ignore' }}
         retention-days: ${{ inputs.artifact_retention_days || env.artifact_retention_days || '10' }}
 
+    - uses: actions/checkout@v2
     - name: Download Artifact
       id: download
       uses: actions/upload-artifact@v3
@@ -121,13 +122,13 @@ runs:
       run: echo ${{steps.download.outputs.download-path}}
 
     # Should Upload the artifact using the issue api
-    - uses: actions/checkout@v2
-    - name: Issue To Preserve
-      if: ${{ ( inputs.issue_trigger || env.issue_trigger || 'never' ) != 'never' }}
-      uses: JasonEtco/create-an-issue@v2
-      with:
-        assignees: ${{ inputs.issue_assignees || env.issue_assignees }}
-        milestone: ${{ inputs.issue_milestone || env.issue_milestone }}
-        filename: ${{ inputs.issue_template || env.issue_template }}
-        update_existing: true
-        search_existing: "all"
+    # - uses: actions/checkout@v2
+    # - name: Issue To Preserve
+    #   if: ${{ ( inputs.issue_trigger || env.issue_trigger || 'never' ) != 'never' }}
+    #   uses: JasonEtco/create-an-issue@v2
+    #   with:
+    #     assignees: ${{ inputs.issue_assignees || env.issue_assignees }}
+    #     milestone: ${{ inputs.issue_milestone || env.issue_milestone }}
+    #     filename: ${{ inputs.issue_template || env.issue_template }}
+    #     update_existing: true
+    #     search_existing: "all"
