@@ -120,14 +120,11 @@ runs:
         name: ${{ inputs.artifact_name || env.artifact_name || 'artifact' }}
         path: ${{ inputs.artifact_path || '~/.artifact' }}
 
-    - name: test
-      shell: bash
-      run: |
-        cd ws
-
     # Should Upload the artifact using the issue api
     - name: Issue To Preserve
       if: ${{ ( inputs.issue_trigger || env.issue_trigger || 'never' ) != 'never' }}
+      run: |
+        cd ws
       uses: JasonEtco/create-an-issue@v2
       with:
         assignees: ${{ inputs.issue_assignees || env.issue_assignees }}
