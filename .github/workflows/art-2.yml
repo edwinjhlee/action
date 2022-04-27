@@ -16,7 +16,7 @@ jobs:
       - name: prepare-artifact
         uses: actions/download-artifacts@main
       - name: main
-        uses: x-cmd/action@main
+        uses: x-cmd/action@dev
         with:
           # code: x log +yanfa && x ws pub || true
           code: x ws pub || true
