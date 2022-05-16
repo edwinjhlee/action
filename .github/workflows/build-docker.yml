@@ -6,6 +6,9 @@ on:
 # NOTE: Error: Container operations are only supported on Linux runners
 jobs:
   publisher:
+    strategy:
+        matrix:
+          image: [xcmd/ubuntu-dev, xcmd/centos-dev]
     container:
         image: ${{ matrix.image }}
     env:
@@ -15,6 +18,7 @@ jobs:
       git_email: 0@x-cmd.com
       ___X_CMD_CODESORUCE_REPO: dev
       CONCURRENCY: 10
+
     steps:
       - name: main
         uses: x-cmd/action@main
