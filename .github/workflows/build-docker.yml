@@ -8,7 +8,7 @@ jobs:
     strategy:
         matrix:
           os: [ ubuntu-latest]
-          image: [xcmd/base-ubuntu-2-dev, xcmd/base-centos-2-dev]
+          image: [xcmd/ubuntu-dev, xcmd/centos-dev]
     container:
         image: ${{ matrix.image }}
     runs-on: ${{ matrix.os }}
