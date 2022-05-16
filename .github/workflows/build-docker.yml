@@ -5,12 +5,13 @@ on:
 
 # NOTE: Error: Container operations are only supported on Linux runners
 jobs:
-  publisher:
+  Build:
     strategy:
         matrix:
           image: [xcmd/ubuntu-dev, xcmd/centos-dev]
     container:
         image: ${{ matrix.image }}
+    runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       ssh_key: ${{ secrets.SSH_PRIVATE_KEY }}
