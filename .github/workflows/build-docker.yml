@@ -7,7 +7,7 @@ jobs:
   publisher:
     strategy:
         matrix:
-          os: [ubuntu-latest, windows-latest, macos-latest]
+          os: [ubuntu-latest, windows-latest]
           image: [xcmd/ubuntu-dev, xcmd/centos-dev]
     container:
         image: ${{ matrix.image }}
