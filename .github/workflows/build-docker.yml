@@ -7,7 +7,7 @@ jobs:
   publisher:
     strategy:
         matrix:
-          os: [ ubuntu-latest]
+          os: [ubuntu-latest, windows-latest, macos-latest]
           image: [xcmd/ubuntu-dev, xcmd/centos-dev]
     container:
         image: ${{ matrix.image }}
@@ -23,4 +23,4 @@ jobs:
       - name: main
         uses: x-cmd/action@main
         with:
-          code: x ws build xcmd/ubuntu-dev
+          code: x ws build ${{ matrix.image }}
