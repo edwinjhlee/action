@@ -1,4 +1,4 @@
-name: Try to do some thing
+name: Use diff os
 on:
   # push:
   workflow_dispatch:
@@ -16,4 +16,4 @@ jobs:
     steps:
       - uses: x-cmd/action@main
         with:
-          code: xws build macos
+          code: x ws build macos

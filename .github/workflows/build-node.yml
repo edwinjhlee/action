@@ -1,4 +1,4 @@
-name: Try to do some thing
+name: Use matrix test
 on:
   # push:
   workflow_dispatch:
@@ -16,5 +16,4 @@ jobs:
           node-version: ${{ matrix.node }}
       - uses: x-cmd/action@main
         with:
-          node-version: ${{ matrix.node }}
-          shellcode: xws build ${{ matrix.os }}
+          code: x ws build ${{ matrix.os }} || true

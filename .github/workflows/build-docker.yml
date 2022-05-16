@@ -1,0 +1,22 @@
+name: Use x-cmd docker image
+on:
+  # push:
+  workflow_dispatch:
+
+jobs:
+  publisher:
+    container:
+        image: node:14.16
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      ssh_key: ${{ secrets.SSH_PRIVATE_KEY }}
+      git_user: agent-zero
+      git_email: 0@x-cmd.com
+      ___X_CMD_CODESORUCE_REPO: dev
+      CONCURRENCY: 10
+    steps:
+      - name: main
+        uses: x-cmd/action@main
+        with:
+          code: x ws build node:14.16
