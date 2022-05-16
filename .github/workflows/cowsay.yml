@@ -12,8 +12,3 @@ jobs:
       - uses: x-cmd/action@main
         with:
           code: git clone git@github.com:x-cmd/theme.git; ls theme
-
-  # build:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: x-cmd/action@main
