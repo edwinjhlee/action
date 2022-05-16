@@ -5,9 +5,13 @@ on:
 
 jobs:
   publisher:
+    strategy:
+        matrix:
+          os: [ ubuntu-latest]
+          image: [xcmd/base-ubuntu-2-dev, xcmd/base-centos-2-dev]
     container:
-        image: xcmd/ubuntu-dev
-    runs-on: ubuntu-latest
+        image: ${{ matrix.image }}
+    runs-on: ${{ matrix.os }}
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       ssh_key: ${{ secrets.SSH_PRIVATE_KEY }}
