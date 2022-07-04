@@ -1,14 +1,17 @@
 name: Cowsay
 on:
-  push:
-  # workflow_dispatch:
+  # push:
+  workflow_dispatch:
 
 jobs:
   cowsay:
     runs-on: ubuntu-latest
     env:
-      ssh_key: '${{ secrets.ssh_key }}'
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: x-cmd/action@main
         with:
-          code: git clone git@github.com:x-cmd/theme.git; ls theme
+          code: |
+            echo "Hello World!"
+            ls
+            x cowsay "hello world!"
