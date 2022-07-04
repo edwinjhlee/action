@@ -8,6 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # use dev branch x-cmd source
+      ___X_CMD_CODESORUCE_REPO: dev
+      CONCURRENCY: 10
     steps:
       - uses: x-cmd/action@main
         with:
