@@ -85,6 +85,8 @@ ___x_cmd_ghaction_init()(
 # EndSection
 
 ___x_cmd_ghaction_run(){
+    ls . $HOME/.x-cmd
+
     set +o errexit; . $HOME/.x-cmd/X
     # set +o pipefail;
     cd ws
