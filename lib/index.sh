@@ -85,9 +85,7 @@ ___x_cmd_ghaction_init()(
 # EndSection
 
 ___x_cmd_ghaction_run(){
-    ls . $HOME/.x-cmd
-
-    set +o errexit; . $HOME/.x-cmd/X
+    set +o errexit; . $HOME/.x-cmd/v/latest/X
     # set +o pipefail;
     cd ws
     if [ -n "$___X_CMD_GHACTION_PREHOOK" ]; then
