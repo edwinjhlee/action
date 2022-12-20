@@ -1,2 +1,4 @@
-git push github
-git push gitee
+{
+    git push git@gitee.com:x-cmd/action main
+    git push git@github.com:x-cmd/action main
+}
