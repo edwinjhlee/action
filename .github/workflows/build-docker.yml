@@ -1,10 +1,16 @@
-name: Use upload artifact
+name: Use x-cmd docker image
 on:
   # push:
   workflow_dispatch:
 
+# NOTE: Error: Container operations are only supported on Linux runners
 jobs:
-  publisher:
+  Build:
+    strategy:
+        matrix:
+          image: [xcmd/ubuntu-dev, xcmd/centos-dev]
+    container:
+        image: ${{ matrix.image }}
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -13,11 +19,9 @@ jobs:
       git_email: 0@x-cmd.com
       ___X_CMD_CODESORUCE_REPO: dev
       CONCURRENCY: 10
+
     steps:
       - name: main
         uses: x-cmd/action@main
         with:
-          # code: x log +yanfa && x ws pub || true
-          code: x ws art || true
-          artifact_name: artifact
-          artifact_path: ~/work/action/action/ws/.artifact
+          code: x ws build ${{ matrix.image }}

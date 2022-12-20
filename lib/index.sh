@@ -85,7 +85,10 @@ ___x_cmd_ghaction_init()(
 # EndSection
 
 ___x_cmd_ghaction_run(){
-    set +o errexit; . $HOME/.x-cmd/.boot/boot
+    set +o errexit;
+    ___X_CMD_VERSION=latest
+    ___X_CMD_PATH_VERSION="$HOME/.x-cmd/v/${___X_CMD_VERSION}"
+    . "${___X_CMD_PATH_VERSION}/X"
     # set +o pipefail;
     cd ws
     if [ -n "$___X_CMD_GHACTION_PREHOOK" ]; then

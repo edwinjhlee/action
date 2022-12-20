@@ -1,3 +1,5 @@
 type x
-# x cowsay "$@"
+x cowsay "$@"
+ls
+pwd
 echo cowsay
