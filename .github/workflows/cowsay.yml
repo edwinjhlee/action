@@ -2,6 +2,10 @@ name: Cowsay
 on:
   # push:
   workflow_dispatch:
+    inputs:
+      name:
+        description: 'Test'
+        default: 'x-cmd'
 
 jobs:
   cowsay:
@@ -15,6 +19,7 @@ jobs:
       - uses: x-cmd/action@main
         with:
           code: |
-            echo "Hello World!"
+            echo "Hello World"
             ls
-            x cowsay "hello world!"
+            x cowsay "hello world"
+            echo "${{ github.event.inputs.name }}

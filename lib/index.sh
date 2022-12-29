@@ -76,11 +76,11 @@ gitee.com,180.97.125.228 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAA
 
 ___x_cmd_ghaction_init()(
     set -o errexit
-
+    echo hello
     ___x_cmd_ghaction_init_x_cmd
-    ___x_cmd_ghaction_init_docker
-    ___x_cmd_ghaction_init_ssh_key
-    ___x_cmd_ghaction_init_git
+    # ___x_cmd_ghaction_init_docker
+    # ___x_cmd_ghaction_init_ssh_key
+    # ___x_cmd_ghaction_init_git
 )
 # EndSection
 

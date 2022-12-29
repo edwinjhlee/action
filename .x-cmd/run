@@ -1,0 +1,21 @@
+# shellcheck shell=sh disable=SC1091,SC2034,SC3043 #xsh
+
+# Section: Arg
+WORK_DIR="$(x wsroot)"
+# EndSection
+
+# Section: Main
+if ! x gh current owner 1> /dev/null; then
+    printf "%s\n" "Not user please check the token and user permission"
+    return 1
+fi
+
+while read -r _id; do
+    x gh action workflow run --repo x-cmd/action "$_id"
+done <<A
+$(command awk '{ if( $1 != "#" ) print $2; }' <"${WORK_DIR}/.github/workflow.yml")
+A
+
+# dispatch inputs test
+#  echo '{"name":"action test"}' | x gh action workflow dispatch --repo x-cmd/action --inputs - 24534142
+
