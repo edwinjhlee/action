@@ -77,7 +77,7 @@ gitee.com,180.97.125.228 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAA
 ___x_cmd_ghaction_init()(
     set -o errexit
 
-    ___x_cmd_ghaction_init_x_cmd
+    # ___x_cmd_ghaction_init_x_cmd
     ___x_cmd_ghaction_init_docker
     ___x_cmd_ghaction_init_ssh_key
     ___x_cmd_ghaction_init_git
@@ -115,8 +115,7 @@ ___x_cmd_ghaction_run(){
 if [ "$#" -gt 0 ]; then
     case "$1" in
         run)        shift; ___x_cmd_ghaction_run "$@" ;;
-        # init)       shift; ___x_cmd_ghaction_init "$@" ;;
-        init)       shift; echo 1 ;;
+        init)       shift; ___x_cmd_ghaction_init "$@" ;;
     esac
 fi
 
