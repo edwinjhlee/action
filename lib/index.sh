@@ -5,8 +5,7 @@ set +o errexit
 # Section: init
 ___x_cmd_ghaction_init_x_cmd(){
     # x log :init "x-cmd/dev"
-    echo 11111111111111111
-    # eval "$(curl https://raw.githubusercontent.com/x-bash/get/main/index.html 2>/dev/null)" 2>/dev/null || true
+    eval "$(curl https://raw.githubusercontent.com/x-bash/get/main/index.html 2>/dev/null)" 2>/dev/null || true
     # eval "$(curl https://get.x-cmd.com 2>/dev/null)" 2>/dev/null || true
 }
 
@@ -116,7 +115,8 @@ ___x_cmd_ghaction_run(){
 if [ "$#" -gt 0 ]; then
     case "$1" in
         run)        shift; ___x_cmd_ghaction_run "$@" ;;
-        init)       shift; ___x_cmd_ghaction_init "$@" ;;
+        # init)       shift; ___x_cmd_ghaction_init "$@" ;;
+        init)       shift; echo 1 ;;
     esac
 fi
 
