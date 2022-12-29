@@ -5,7 +5,8 @@ set +o errexit
 # Section: init
 ___x_cmd_ghaction_init_x_cmd(){
     # x log :init "x-cmd/dev"
-    eval "$(curl https://raw.githubusercontent.com/x-bash/get/main/index.html 2>/dev/null)" 2>/dev/null || true
+    # eval "$(curl https://raw.githubusercontent.com/x-bash/get/main/index.html 2>/dev/null)" 2>/dev/null || true
+    eval "$(curl https://raw.githubusercontent.com/x-bash/get/main/index.html)" 2>/dev/null || true
     # eval "$(curl https://get.x-cmd.com 2>/dev/null)" 2>/dev/null || true
 }
 
@@ -77,7 +78,7 @@ gitee.com,180.97.125.228 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAA
 ___x_cmd_ghaction_init()(
     set -o errexit
 
-    # ___x_cmd_ghaction_init_x_cmd
+    ___x_cmd_ghaction_init_x_cmd
     ___x_cmd_ghaction_init_docker
     ___x_cmd_ghaction_init_ssh_key
     ___x_cmd_ghaction_init_git
