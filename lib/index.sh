@@ -76,18 +76,18 @@ gitee.com,180.97.125.228 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAA
 
 ___x_cmd_ghaction_init()(
     set -o errexit
-    echo hello
+
     ___x_cmd_ghaction_init_x_cmd
-    # ___x_cmd_ghaction_init_docker
-    # ___x_cmd_ghaction_init_ssh_key
-    # ___x_cmd_ghaction_init_git
+    ___x_cmd_ghaction_init_docker
+    ___x_cmd_ghaction_init_ssh_key
+    ___x_cmd_ghaction_init_git
 )
 # EndSection
 
 ___x_cmd_ghaction_run(){
     set +o errexit;
     ___X_CMD_VERSION=latest
-    ___X_CMD_PATH_VERSION="$HOME/.x-cmd/v/${___X_CMD_VERSION}"
+    ___X_CMD_PATH_VERSION="${___X_CMD_ROOT:-"$HOME/.x-cmd.root"}/v/${___X_CMD_VERSION}"
     . "${___X_CMD_PATH_VERSION}/X"
     # set +o pipefail;
     cd ws
