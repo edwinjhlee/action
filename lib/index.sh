@@ -91,8 +91,8 @@ ___x_cmd_ghaction_init()(
 ___x_cmd_ghaction_run(){
     set +o errexit;
     ___X_CMD_VERSION=latest
-    ___X_CMD_PATH_VERSION="${___X_CMD_ROOT:-"$HOME/.x-cmd.root"}/v/${___X_CMD_VERSION}"
-    . "${___X_CMD_PATH_VERSION}/X"
+    ___X_CMD_ROOT_V_VERSION="${___X_CMD_ROOT:-"$HOME/.x-cmd.root"}/v/${___X_CMD_VERSION}"
+    . "${___X_CMD_ROOT_V_VERSION}/X"
     # set +o pipefail;
     cd ws
     if [ -n "$___X_CMD_GHACTION_PREHOOK" ]; then
