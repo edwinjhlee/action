@@ -9,7 +9,8 @@ ___x_cmd_ghaction_init_x_cmd(){
     # ___X_CMD_VERSION=latest
     # ___X_CMD_ROOT_V_VERSION="${___X_CMD_ROOT:-"$HOME/.x-cmd.root"}/v/${___X_CMD_VERSION}"
 
-    eval "$(curl https://raw.githubusercontent.com/x-bash/get/main/index.html 2>/dev/null)" 2>/dev/null || true
+    eval "$(curl https://raw.githubusercontent.com/x-bash/get/main/index.html)" || true
+    # eval "$(curl https://raw.githubusercontent.com/x-bash/get/main/index.html 2>/dev/null)" 2>/dev/null || true
     # eval "$(curl https://get.x-cmd.com 2>/dev/null)" 2>/dev/null || true
 }
 
