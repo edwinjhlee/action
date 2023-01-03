@@ -88,7 +88,6 @@ runs:
         docker_buildx_init: ${{ inputs.docker_buildx_init || env.docker_buildx_init }}
         ___X_CMD_LOG_C_TF: "1"
       run: |
-        # curl -s https://raw.githubusercontent.com/x-cmd/action/${{ env.ws_repo_ref }}/lib/index.sh > ~/xghaction
         curl -s https://raw.githubusercontent.com/x-cmd/action/main/lib/index.sh > ~/xghaction
         . ~/xghaction init
 
