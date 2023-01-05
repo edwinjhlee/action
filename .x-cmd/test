@@ -2,7 +2,6 @@
 
 # Section: Arg
 WORK_DIR="$(x wsroot)"
-# EndSection
 
 # Section: Main
 if ! x gh current owner 1> /dev/null; then

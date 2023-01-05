@@ -22,4 +22,4 @@ jobs:
             echo "Hello World"
             ls
             x cowsay "hello world"
-            echo "${{ github.event.inputs.name }}
+            echo "${{ github.event.inputs.name }}"
