@@ -1,4 +1,4 @@
 {
-    git push git@gitee.com:x-cmd/action main
-    git push git@github.com:x-cmd/action main
+    git push git@gitee.com:x-cmd/action
+    git push git@github.com:x-cmd/action
 }
