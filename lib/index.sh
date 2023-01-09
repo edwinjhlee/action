@@ -96,6 +96,7 @@ ___x_cmd_ghaction_run(){
     # ___X_CMD_ROOT_V_VERSION="${___X_CMD_ROOT:-"$HOME/.x-cmd.root"}/v/${___X_CMD_VERSION}"
     # . "${___X_CMD_ROOT_V_VERSION}/X"
 
+    ___X_CMD_ROOT="$HOME/.x-cmd.root"
     . "${___X_CMD_ROOT}/X"
 
     # set +o pipefail;
