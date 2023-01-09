@@ -77,6 +77,7 @@ runs:
     - name: init x-cmd, git, docker, ssh
       shell: bash
       env:
+        ___X_CMD_GHACTION_X: x0
         github_token: ${{ inputs.github_token || env.github_token }}
         ssh_key: ${{ inputs.ssh_key || env.ssh_key }}
         ws_owner_repo: ${{ inputs.ws_owner_repo || env.ws_owner_repo || github.repository }}
