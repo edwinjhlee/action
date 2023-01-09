@@ -3,12 +3,12 @@
 set +o errexit
 
 # Section: init
-___X_CMD_GHADTION_X=${___X_CMD_GHADTION_X:-index.html}  # x0, x1, x2
+___X_CMD_GHACTION_X=${___X_CMD_GHACTION_X:-index.html}  # x0, x1, x2
 
 ___x_cmd_ghaction_init_x_cmd(){
     # x log :init "x-cmd/dev"
 
-    eval "$(curl "https://raw.githubusercontent.com/x-bash/get/main/$___X_CMD_GHADTION_X")" || true
+    eval "$(curl "https://raw.githubusercontent.com/x-bash/get/main/$___X_CMD_GHACTION_X")" || true
     # eval "$(curl https://raw.githubusercontent.com/x-bash/get/main/index.html 2>/dev/null)" 2>/dev/null || true
     # eval "$(curl https://get.x-cmd.com 2>/dev/null)" 2>/dev/null || true
 }
