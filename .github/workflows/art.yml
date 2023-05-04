@@ -7,12 +7,11 @@ jobs:
   publisher:
     runs-on: ubuntu-latest
     env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # github_token: ${{ secrets.GITHUB_TOKEN }}
       ssh_key: ${{ secrets.SSH_PRIVATE_KEY }}
       git_user: agent-zero
       git_email: 0@x-cmd.com
-      ___X_CMD_CODESORUCE_REPO: dev
-      CONCURRENCY: 10
+      # ___X_CMD_GHACTION_X: x1
     steps:
       - name: main
         uses: x-cmd/action@main

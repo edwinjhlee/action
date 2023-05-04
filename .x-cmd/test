@@ -4,7 +4,7 @@
 WORK_DIR="$(x wsroot)"
 
 # Section: Main
-if ! x gh current owner 1> /dev/null; then
+if ! x gh token 1> /dev/null; then
     printf "%s\n" "Not user please check the token and user permission"
     return 1
 fi
