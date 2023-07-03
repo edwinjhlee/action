@@ -70,9 +70,9 @@ ___x_cmd_ghaction_init_ssh_key(){
     [ -z "$ssh_key" ] && return
 
     printf "%s\n" "$ssh_key" >> ~/.ssh/id_rsa
-    chmod 600 ~/.ssh/known_hosts ~/.ssh/id_rsa
-    ssh-add ~/.ssh/id_rsa
-} 2>/dev/null 1>&2
+    chmod 600 ~/.ssh/known_hosts ~/.ssh/id_rsa || echo 111111
+    ssh-add ~/.ssh/id_rsa || echo 2222222
+}
 
 ___x_cmd_ghaction_init()(
     set -o errexit
