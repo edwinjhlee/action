@@ -9,11 +9,8 @@ on:
 
 jobs:
   cowsay:
-    strategy:
-        matrix:
-          image: [xcmd/ubuntu-dev, xcmd/centos-dev]
     container:
-        image: ${{ matrix.image }}
+      image: xcmd/ubuntu-dev
     runs-on: ubuntu-latest
     env:
       # github_token: ${{ secrets.GITHUB_TOKEN }}
