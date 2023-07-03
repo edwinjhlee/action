@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # github_token: ${{ secrets.GITHUB_TOKEN }}
-      ___X_CMD_GHACTION_X: x2
+      # ___X_CMD_GHACTION_X: x2
       ssh_key: ${{ secrets.SSH_PRIVATE_KEY }}
       git_user: agent-zero
       git_email: 0@x-cmd.com
