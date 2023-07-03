@@ -23,6 +23,10 @@ jobs:
       - uses: x-cmd/action@main
         with:
           code: |
+            [ -n "$ssh_key" ] || echo 111111
+            [ -n "$ssh_key" ] || echo 111111
+            [ -n "$ssh_key" ] || echo 111111
+            [ -n "$ssh_key" ] || echo 111111
             echo "Hello World"
             ls
             x cowsay "hello world"
