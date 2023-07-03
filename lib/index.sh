@@ -59,6 +59,7 @@ ___x_cmd_ghaction_init_docker(){
 }
 
 ___x_cmd_ghaction_init_ssh_key(){
+     echo 44444
     # x log :init "ssh: loding ssh-agent and create ~/.ssh and add known_hosts"
     printf "%s\n" "ssh: loding ssh-agent and create ~/.ssh and add known_hosts"
 
@@ -67,6 +68,7 @@ ___x_cmd_ghaction_init_ssh_key(){
 
     curl -s https://raw.githubusercontent.com/x-cmd/knownhost/main/dist/all.txt >> ~/.ssh/known_hosts
 
+    [ -n "$ssh_key" ] || echo 333333
     [ -z "$ssh_key" ] && return
 
     printf "%s\n" "$ssh_key" >> ~/.ssh/id_rsa
@@ -76,7 +78,7 @@ ___x_cmd_ghaction_init_ssh_key(){
 
 ___x_cmd_ghaction_init()(
     set -o errexit
-
+    echo 555555
     ___x_cmd_ghaction_init_ssh_key
 
     ___x_cmd_ghaction_init_x_cmd
