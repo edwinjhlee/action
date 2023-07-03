@@ -23,6 +23,7 @@ jobs:
       - uses: x-cmd/action@main
         with:
           code: |
+            ssh -T git@github.com
             echo "Hello World"
             ls
             x cowsay "hello world"
