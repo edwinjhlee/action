@@ -20,7 +20,8 @@ jobs:
       git_email: 0@x-cmd.com
       CONCURRENCY: 10
     steps:
-      - uses: x-cmd/action@main
+      # - uses: x-cmd/action@main
+      - uses: x-cmd/action@v0
         with:
           code: |
             echo "Hello World"

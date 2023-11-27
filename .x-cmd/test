@@ -1,20 +1,19 @@
-# shellcheck shell=sh disable=SC1091,SC2034,SC3043 #xsh
+# shellcheck shell=dash
 
-# Section: Arg
-WORK_DIR="$(x wsroot)"
+(
+    if ! x gh --cur --get config 1> /dev/null; then
+        printf "%s\n" "Not config please check the token"
+        return 1
+    fi
 
-# Section: Main
-if ! x gh token 1> /dev/null; then
-    printf "%s\n" "Not user please check the token and user permission"
-    return 1
-fi
-
-while read -r _id; do
-    x gh action workflow run --repo x-cmd/action "$_id"
-done <<A
-$(command awk '{ if( $1 != "#" ) print $2; }' <"${WORK_DIR}/.github/workflow.yml")
+    while read -r _id; do
+        x gh action workflow run --repo x-cmd/action "$_id"
+    done <<A
+24985679
+26208510
+24541493
+24541494
+24534142
 A
 
-# dispatch inputs test
-#  echo '{"name":"action test"}' | x gh action workflow dispatch --repo x-cmd/action --inputs - 24534142
-
+)
